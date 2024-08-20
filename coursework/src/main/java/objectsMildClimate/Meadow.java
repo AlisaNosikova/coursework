@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Bioms;
+package objectsMildClimate;
 
 /**
  *
  * @author User
  */
-public class MildCLimateBiom extends Biom {
+public class Meadow {
     
 }

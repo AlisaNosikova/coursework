@@ -8,6 +8,6 @@ package classes;
  *
  * @author User
  */
-public class OI {
+public class ObjectInterest {
     
 }
