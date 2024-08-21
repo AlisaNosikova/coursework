@@ -4,6 +4,7 @@
  */
 package bioms;
 
+import java.util.ArrayList;
 import objectsTundra.*;
 
 /**
@@ -11,13 +12,20 @@ import objectsTundra.*;
  * @author User
  */
 public abstract class Tundra implements Biom {
-    
-    @Override
-    public void addToObjectsInterestList(){
-        objectsInterestList.add(Glacier.class);
-        objectsInterestList.add(Geyser.class);
-        objectsInterestList.add(OpenWoodland.class);
-        objectsInterestList.add(ReindeerHerdersCamp.class);
-        objectsInterestList.add(Swamp.class); 
+
+    ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
+
+    public Tundra() {
+        possibleObjectsInterestList.add(Glacier.class);
+        possibleObjectsInterestList.add(Geyser.class);
+        possibleObjectsInterestList.add(OpenWoodland.class);
+        possibleObjectsInterestList.add(ReindeerHerdersCamp.class);
+        possibleObjectsInterestList.add(Swamp.class);
     }
+
+    @Override
+    public ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return possibleObjectsInterestList;
+    }
+
 }

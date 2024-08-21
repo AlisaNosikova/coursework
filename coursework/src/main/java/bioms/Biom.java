@@ -12,7 +12,5 @@ import java.util.List;
  * @author User
  */
 public interface Biom {
-    ArrayList<Class<?>> objectsInterestList = new ArrayList<>();
-    public void addToObjectsInterestList();
-    public ArrayList<Class<?>> getObjectsInterestList();
+    ArrayList<Class<?>> getPossibleObjectsInterestList();
 }

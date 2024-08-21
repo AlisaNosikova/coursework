@@ -10,6 +10,6 @@ package regions;
  *
  * @author User
  */
-public class Region {
+public interface Region {
   
 }

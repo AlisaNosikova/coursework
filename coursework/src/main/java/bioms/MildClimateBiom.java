@@ -4,14 +4,21 @@
  */
 package bioms;
 
+import java.util.ArrayList;
+import objectsMildClimate.*;
+
 
 /**
  *
  * @author User
  */
 public abstract class MildClimateBiom implements Biom {
-    @Override
-    public void addToObjectsInterestList(){
-        
-    }
+    ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
+    public MildClimateBiom(){
+        possibleObjectsInterestList.add(Forest.class);
+        possibleObjectsInterestList.add(Meadow.class);
+        possibleObjectsInterestList.add(Mountain.class);
+        possibleObjectsInterestList.add(Swamp.class);
+        possibleObjectsInterestList.add(Village.class);
+}
 }
