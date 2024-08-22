@@ -8,6 +8,7 @@ package classes;
  *
  * @author User
  */
-public class MakeFireCommand {
+public class Player {
+    private Inventory inventory;
     
 }
