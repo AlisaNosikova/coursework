@@ -17,32 +17,25 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class TundraRegion extends Tundra implements Region{
-    private ArrayList<Object> objectsInterestList = new ArrayList<>();
-    private Random random = new Random();
+public class TundraRegion extends BaseRegion {
+    private final Tundra tundra;
 
-    public ArrayList<Object> getObjectsInterestList() {
-        return objectsInterestList;
+    public TundraRegion() {
+        this.tundra = new Tundra() {};
     }
 
-    public void generateObjectsInterestList() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        ArrayList<Class<?>> possibleObjectsInterestList = getPossibleObjectsInterestList();
-        int size = possibleObjectsInterestList.size();
-
-        int numOfClasses = random.nextInt(3) + 3;
-        ArrayList<Class<?>> selectedClasses = new ArrayList<>();
-
-        for (int i = 0; i < numOfClasses; i++) {
-            int randomIndex = random.nextInt(size);
-            Class<?> clazz = possibleObjectsInterestList.get(randomIndex);
-            selectedClasses.add(clazz);
-        }
-
-        for (Class<?> clazz : selectedClasses) {
-            Object obj = clazz.getDeclaredConstructor().newInstance();
-            objectsInterestList.add(obj);
-        }
+    @Override
+    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return tundra.getPossibleObjectsInterestList();
     }
 
+    @Override
+    protected int getMinNumOfClasses() {
+        return 3;
+    }
+
+    @Override
+    protected int getMaxNumOfClasses() {
+        return 5;
+    }
 }
-

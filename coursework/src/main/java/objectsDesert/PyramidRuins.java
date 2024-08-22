@@ -4,10 +4,12 @@
  */
 package objectsDesert;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class PyramidRuins {
+public class PyramidRuins extends ObjectInterest {
     
 }

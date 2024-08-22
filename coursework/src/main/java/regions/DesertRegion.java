@@ -13,10 +13,25 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class DesertRegion extends Desert {
-    @Override
-    public ArrayList<Class<?>> getObjectsInterestList() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+public class DesertRegion extends BaseRegion {
+    private final Desert desert;
+
+    public DesertRegion() {
+        this.desert = new Desert() {};
     }
-    
+
+    @Override
+    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return desert.getPossibleObjectsInterestList();
+    }
+
+    @Override
+    protected int getMinNumOfClasses() {
+        return 2;
+    }
+
+    @Override
+    protected int getMaxNumOfClasses() {
+        return 4;
+    }
 }

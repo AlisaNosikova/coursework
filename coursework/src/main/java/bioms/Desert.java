@@ -11,12 +11,8 @@ import objectsDesert.*;
  *
  * @author User
  */
-public abstract class Desert implements Biom {
-    ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
-    public Desert(){
-        possibleObjectsInterestList.add(Gorge.class);
-        possibleObjectsInterestList.add(Oasis.class);
-        possibleObjectsInterestList.add(PyramidRuins.class);
-        possibleObjectsInterestList.add(Saline.class);
-}
+public abstract class Desert extends Biom {
+    public Desert() {
+        super(Gorge.class, Oasis.class, PyramidRuins.class, Saline.class);
+    }
 }

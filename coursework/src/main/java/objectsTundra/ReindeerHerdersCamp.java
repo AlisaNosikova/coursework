@@ -4,10 +4,12 @@
  */
 package objectsTundra;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class ReindeerHerdersCamp {
+public class ReindeerHerdersCamp extends ObjectInterest {
     
 }

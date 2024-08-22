@@ -11,21 +11,8 @@ import objectsTundra.*;
  *
  * @author User
  */
-public abstract class Tundra implements Biom {
-
-    ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
-
+public abstract class Tundra extends Biom {
     public Tundra() {
-        possibleObjectsInterestList.add(Glacier.class);
-        possibleObjectsInterestList.add(Geyser.class);
-        possibleObjectsInterestList.add(OpenWoodland.class);
-        possibleObjectsInterestList.add(ReindeerHerdersCamp.class);
-        possibleObjectsInterestList.add(Swamp.class);
+        super(Glacier.class, Geyser.class, OpenWoodland.class, ReindeerHerdersCamp.class, Swamp.class);
     }
-
-    @Override
-    public ArrayList<Class<?>> getPossibleObjectsInterestList() {
-        return possibleObjectsInterestList;
-    }
-
 }

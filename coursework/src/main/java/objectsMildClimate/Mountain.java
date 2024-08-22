@@ -4,10 +4,12 @@
  */
 package objectsMildClimate;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class Mountain {
+public class Mountain extends ObjectInterest {
     
 }

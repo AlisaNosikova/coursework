@@ -5,12 +5,20 @@
 package bioms;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Arrays;
 /**
  *
  * @author User
  */
-public interface Biom {
-    ArrayList<Class<?>> getPossibleObjectsInterestList();
+public abstract class Biom {
+
+    private final ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
+
+    protected Biom(Class<?>... classes) {
+        possibleObjectsInterestList.addAll(Arrays.asList(classes));
+    }
+
+    public ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return possibleObjectsInterestList;
+    }
 }

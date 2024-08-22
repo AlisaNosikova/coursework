@@ -4,10 +4,17 @@
  */
 package classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
-public class ObjectInterest {
-    
+public abstract class ObjectInterest {
+    ArrayList<InsideObjectType> possibleInsideObjects = new ArrayList<>();
+    ArrayList<InsideObjectType> insideObjectsList = new ArrayList<>();
+    boolean isFireAllowed;
+    boolean isHouseBuildingAllowed;
+    boolean isTreeFellingAllowed;
+
 }

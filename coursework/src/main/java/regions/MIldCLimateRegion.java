@@ -2,7 +2,7 @@ package regions;
 
 
 
-import bioms.MildClimateBiom;
+import bioms.MildClimate;
 import java.util.ArrayList;
 
 /*
@@ -14,11 +14,26 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class MIldCLimateRegion extends MildClimateBiom {
+public class MildClimateRegion extends BaseRegion{
+    private final MildClimate mildClimate;
+
+    public MildClimateRegion() {
+        this.mildClimate = new MildClimate() {
+        };
+    }
 
     @Override
-    public ArrayList<Class<?>> getObjectsInterestList() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return mildClimate.getPossibleObjectsInterestList();
     }
-    
+
+    @Override
+    protected int getMinNumOfClasses() {
+        return 3;
+    }
+
+    @Override
+    protected int getMaxNumOfClasses() {
+        return 5;
+    }
 }

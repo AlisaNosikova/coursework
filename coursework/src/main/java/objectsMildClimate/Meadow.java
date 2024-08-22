@@ -4,10 +4,12 @@
  */
 package objectsMildClimate;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class Meadow {
+public class Meadow extends ObjectInterest {
     
 }

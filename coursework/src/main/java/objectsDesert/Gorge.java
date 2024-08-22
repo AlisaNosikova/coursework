@@ -4,10 +4,12 @@
  */
 package objectsDesert;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class Gorge {
+public class Gorge extends ObjectInterest {
     
 }

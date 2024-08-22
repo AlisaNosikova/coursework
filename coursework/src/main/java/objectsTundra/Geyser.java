@@ -4,10 +4,12 @@
  */
 package objectsTundra;
 
+import classes.ObjectInterest;
+
 /**
  *
  * @author User
  */
-public class Geyser {
+public class Geyser extends ObjectInterest{
     
 }
