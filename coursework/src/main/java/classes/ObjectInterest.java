@@ -7,6 +7,7 @@ package classes;
 import static java.lang.Math.random;
 import static java.lang.StrictMath.random;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -21,8 +22,10 @@ public abstract class ObjectInterest {
     boolean isHouseBuildingAllowed=true;
     boolean isTreeFellingAllowed=true;
     private final Random random = new Random();    
+    protected ObjectInterest(InsideObjectType... types) {
+        possibleInsideObjects.addAll(Arrays.asList(types));
+    }
     public void generateInsideObjectsList() {
-        ArrayList<InsideObjectType> possibleInsideObjects = getPossibleInsideObjects();
         int size = possibleInsideObjects.size();
         for (InsideObjectType type: possibleInsideObjects) {
             int randomIndex = random.nextInt(5) + 1 ;

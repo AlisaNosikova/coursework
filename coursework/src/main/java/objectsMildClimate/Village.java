@@ -4,12 +4,19 @@
  */
 package objectsMildClimate;
 
+import classes.InsideObjectType;
 import classes.ObjectInterest;
+import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
 public class Village extends ObjectInterest {
+
+    @Override
+    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
