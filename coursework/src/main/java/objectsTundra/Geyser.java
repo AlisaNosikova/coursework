@@ -4,19 +4,16 @@
  */
 package objectsTundra;
 
-import classes.InsideObjectType;
+import static classes.InsideObjectType.*;
 import classes.ObjectInterest;
-import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
 public class Geyser extends ObjectInterest{
-
-    @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Geyser(){
+        super(HILL, THERMAL_POOL,STREAM);
     }
     
 }

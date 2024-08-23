@@ -4,11 +4,11 @@
  */
 package classes;
 
-import static java.lang.Math.random;
-import static java.lang.StrictMath.random;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import static classes.InsideObjectType.*;
 
 /**
  *
@@ -17,7 +17,6 @@ import java.util.Random;
 public abstract class ObjectInterest {
     ArrayList<InsideObjectType> possibleInsideObjects = new ArrayList<>();
     ArrayList<InsideObjectType> insideObjectsList = new ArrayList<>();
-    protected abstract ArrayList<InsideObjectType> getPossibleInsideObjects();
     boolean isFireAllowed=true;
     boolean isHouseBuildingAllowed=true;
     boolean isTreeFellingAllowed=true;
@@ -34,5 +33,8 @@ public abstract class ObjectInterest {
             }
         }
     }
+    public ArrayList<InsideObjectType> getPossibleInsideObjects(){
+        return possibleInsideObjects;
+}
     
 }

@@ -4,19 +4,14 @@
  */
 package objectsDesert;
 
-import classes.InsideObjectType;
 import classes.ObjectInterest;
-import java.util.ArrayList;
-
+import static classes.InsideObjectType.*;
 /**
  *
  * @author User
  */
 public class Oasis extends ObjectInterest {
-
-    @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+   public Oasis(){
+       super(PALM_TREE,OLIVE_TREE,LAKE,PASTURE);
+   }
 }

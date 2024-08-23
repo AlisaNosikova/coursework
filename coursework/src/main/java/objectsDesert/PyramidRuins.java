@@ -4,19 +4,15 @@
  */
 package objectsDesert;
 
-import classes.InsideObjectType;
 import classes.ObjectInterest;
-import java.util.ArrayList;
-
+import static classes.InsideObjectType.*;
 /**
  *
  * @author User
  */
 public class PyramidRuins extends ObjectInterest {
-
-    @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+     public PyramidRuins(){
+         super(PYRAMID, TOMB);
+     }
     
 }

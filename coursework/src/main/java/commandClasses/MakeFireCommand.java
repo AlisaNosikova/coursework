@@ -14,7 +14,7 @@ import commandClasses.Command;
 public class MakeFireCommand implements Command {
 
     @Override
-    public void execute(ObjectInterest objectInterest) {
+    public ActionResult execute(ObjectInterest objectInterest) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

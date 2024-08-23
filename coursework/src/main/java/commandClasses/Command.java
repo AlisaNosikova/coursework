@@ -11,5 +11,5 @@ import classes.ObjectInterest;
  * @author User
  */
 public interface Command {
-    void execute(ObjectInterest objectInterest);
+    ActionResult execute(ObjectInterest objectInterest);
 }

@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package objectsMildClimate;
+package commandClasses;
 
-import classes.InsideObjectType;
 import classes.ObjectInterest;
-import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
-public class Swamp extends ObjectInterest {
+public class BuildHouseCommand implements Command {
 
     @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
+    public ActionResult execute(ObjectInterest objectInterest) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+   
 }

@@ -4,7 +4,7 @@
  */
 package classes;
 
-import commandClasses.Command;
+import commandClasses.*;
 import java.util.ArrayList;
 
 /**
@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public class Player {
     private Inventory inventory;
-    ArrayList<Command> actions;
+    private ArrayList<ActionResult> actionHistory;
 }

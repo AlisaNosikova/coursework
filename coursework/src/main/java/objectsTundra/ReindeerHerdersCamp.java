@@ -4,19 +4,16 @@
  */
 package objectsTundra;
 
-import classes.InsideObjectType;
 import classes.ObjectInterest;
-import java.util.ArrayList;
-
+import static classes.InsideObjectType.*;
 /**
  *
  * @author User
  */
-public class ReindeerHerdersCamp extends ObjectInterest {
-
-    @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public class ReindeerHerdersCamp extends ObjectInterest {   
+     public ReindeerHerdersCamp(){
+         super(REINDEER,REINDEER_HERDER,TENT);
+     }
+             
     
 }

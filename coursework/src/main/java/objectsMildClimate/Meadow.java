@@ -4,19 +4,15 @@
  */
 package objectsMildClimate;
 
-import classes.InsideObjectType;
 import classes.ObjectInterest;
-import java.util.ArrayList;
-
+import static classes.InsideObjectType.*;
 /**
  *
  * @author User
  */
 public class Meadow extends ObjectInterest {
-
-    @Override
-    protected ArrayList<InsideObjectType> getPossibleInsideObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Meadow(){
+        super(BUSH, LAKE, STREAM, PASTURE, HAYSTACK);
     }
     
 }

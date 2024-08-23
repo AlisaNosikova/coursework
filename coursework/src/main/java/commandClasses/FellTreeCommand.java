@@ -5,7 +5,6 @@
 package commandClasses;
 
 import classes.ObjectInterest;
-import commandClasses.Command;
 
 /**
  *
@@ -14,7 +13,7 @@ import commandClasses.Command;
 public class FellTreeCommand implements Command {
 
     @Override
-    public void execute(ObjectInterest objectInterest) {
+    public ActionResult execute(ObjectInterest objectInterest) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
