@@ -14,4 +14,21 @@ import java.util.ArrayList;
 public class Player {
     private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
+    private Command buildHouseAction;
+    
+    public int getInventory(){
+        return inventory.getNumLogs();
+    }
+    public ArrayList<ActionResult> getActionList(){
+        return actionHistory;
+    }
+    public void setInventory(Inventory invent){
+        this.inventory = invent;
+    }
+    public void setActionList(ArrayList<ActionResult> history){
+        this.actionHistory = history;
+    }
+    public ActionResult buildHouse(ObjectInterest obj){
+        return buildHouseAction.execute(obj);
+    }
 }
