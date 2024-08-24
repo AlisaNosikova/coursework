@@ -35,6 +35,14 @@ public abstract class ObjectInterest {
     }
     public ArrayList<InsideObjectType> getPossibleInsideObjects(){
         return possibleInsideObjects;
-}
-    
+    }
+    public boolean getFireAllowedStatus(){
+        return isFireAllowed;
+    }
+    public boolean getHouseBuildingAllowedStatus(){
+        return isHouseBuildingAllowed;
+    }
+    public boolean getTreeFellingAllowedStatus(){
+        return isTreeFellingAllowed;
+    }
 }
