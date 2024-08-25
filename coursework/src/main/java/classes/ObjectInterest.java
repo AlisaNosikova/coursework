@@ -22,7 +22,7 @@ public abstract class ObjectInterest {
     private boolean isTreeFellingAllowed=true;
     private boolean isAlive = true;
     private final Random random = new Random();    
-    protected ObjectInterest(InsideObjectType... types) {
+    public ObjectInterest(InsideObjectType... types) {
         possibleInsideObjects.addAll(Arrays.asList(types));
     }
     public void generateInsideObjectsList() {

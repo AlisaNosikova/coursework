@@ -15,17 +15,19 @@ public class FellTreeCommand implements Command {
     private ActionResult actionResult= new ActionResult();
     private Player player;
     @Override
-    public ActionResult execute(ObjectInterest obj) {
+    public ActionResult execute(ObjectInterest obj, Player player) {
+       this.player = player;
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
        if (approveStatus == true){
            actionResult.setMessage("Вы срубили дерево!");
            player.getInventory().addToInventory(1);
+           actionResult.setStatus(true);
        }
        else{
            actionResult.setMessage("Срубить дерево тут нельзя!");
+           actionResult.setStatus(false);
        }
        actionResult.setObjectInerest(obj);
-       actionResult.setStatus(true);
        return actionResult;
     }
 }

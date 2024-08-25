@@ -1,5 +1,7 @@
 package regions;
 
+import classes.ObjectInterest;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,7 +25,7 @@ public abstract class BaseRegion {
 
     protected abstract int getMaxNumOfClasses();
 
-    public void generateObjectsInterestList() {
+    public void generateObjectsInterestList() throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         ArrayList<Class<?>> possibleObjectsInterestList = getPossibleObjectsInterestList();
         int size = possibleObjectsInterestList.size();
 
@@ -32,7 +34,7 @@ public abstract class BaseRegion {
         for (int i = 0; i < numOfClasses; i++) {
             int randomIndex = random.nextInt(size);
             Class<?> clazz = possibleObjectsInterestList.get(randomIndex);
-            objectsInterestList.add(clazz);
+            objectsInterestList.add( clazz.getDeclaredConstructor().newInstance());
         }
     }
 

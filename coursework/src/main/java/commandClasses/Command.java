@@ -4,12 +4,13 @@
  */
 package commandClasses;
 
-import classes.ObjectInterest;
+
+import classes.*;
 
 /**
  *
  * @author User
  */
 public interface Command {
-    ActionResult execute(ObjectInterest objectInterest);
+    ActionResult execute(ObjectInterest objectInterest, Player player);
 }

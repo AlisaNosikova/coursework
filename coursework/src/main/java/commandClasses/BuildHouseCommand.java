@@ -13,9 +13,10 @@ import classes.Player;
  */
 public class BuildHouseCommand implements Command {
     private ActionResult actionResult= new ActionResult();
-    private Player player = new Player();
+    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest obj) {
+    public ActionResult execute(ObjectInterest obj, Player player) {
+       this.player = player;
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
        if (approveStatus == true){
            actionResult.setMessage("Вы построили дерево!");
