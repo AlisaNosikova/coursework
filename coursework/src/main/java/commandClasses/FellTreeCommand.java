@@ -5,16 +5,27 @@
 package commandClasses;
 
 import classes.ObjectInterest;
+import classes.Player;
 
 /**
  *
  * @author User
  */
 public class FellTreeCommand implements Command {
-
+    private ActionResult actionResult= new ActionResult();
+    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest objectInterest) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ActionResult execute(ObjectInterest obj) {
+       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
+       if (approveStatus == true){
+           actionResult.setMessage("Вы срубили дерево!");
+           player.getInventory().addToInventory(1);
+       }
+       else{
+           actionResult.setMessage("Срубить дерево тут нельзя!");
+       }
+       actionResult.setObjectInerest(obj);
+       actionResult.setStatus(true);
+       return actionResult;
     }
-
 }

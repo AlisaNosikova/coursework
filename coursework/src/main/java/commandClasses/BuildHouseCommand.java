@@ -5,17 +5,39 @@
 package commandClasses;
 
 import classes.ObjectInterest;
+import classes.Player;
 
 /**
  *
  * @author User
  */
 public class BuildHouseCommand implements Command {
-
+    private ActionResult actionResult= new ActionResult();
+    private Player player = new Player();
     @Override
-    public ActionResult execute(ObjectInterest objectInterest) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ActionResult execute(ObjectInterest obj) {
+       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
+       if (approveStatus == true){
+           actionResult.setMessage("Вы построили дерево!");
+           checkResources();
+       }
+       else{
+           actionResult.setMessage("Построить дом в этом месте нельзя!");
+           actionResult.setStatus(false);
+       }
+       actionResult.setObjectInerest(obj);
+       return actionResult;
     }
+   public void checkResources(){
+       if (player.getInventory().getNumLogs()>=10){
+           player.getInventory().useInventory(10);
+             actionResult.setStatus(true);
+       }
+       else{
+           actionResult.setMessage("Построить дом невозможно! У вас нет ресурсов!");
+             actionResult.setStatus(false);
+       }
+       
+   }
 
-   
 }

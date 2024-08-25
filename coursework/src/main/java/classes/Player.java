@@ -15,9 +15,11 @@ public class Player {
     private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
     private Command buildHouseAction;
+    private Command fellTreeAction;
+    private Command makeFireAction;
     
-    public int getInventory(){
-        return inventory.getNumLogs();
+    public Inventory getInventory(){
+        return inventory;
     }
     public ArrayList<ActionResult> getActionList(){
         return actionHistory;
@@ -29,6 +31,15 @@ public class Player {
         this.actionHistory = history;
     }
     public ActionResult buildHouse(ObjectInterest obj){
-        return buildHouseAction.execute(obj);
+        return buildHouseAction.execute(obj, this);
+    }
+    public ActionResult fellTree(ObjectInterest obj){
+        return fellTreeAction.execute(obj, this);
+    }
+    public ActionResult makeFire(ObjectInterest obj){
+        return makeFireAction.execute(obj, this);
+    }
+    public ActionResult makeAction(ObjectInterest obj, Command action){
+        return action.execute(obj, this);
     }
 }

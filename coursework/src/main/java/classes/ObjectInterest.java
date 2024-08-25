@@ -15,11 +15,12 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public abstract class ObjectInterest {
-    ArrayList<InsideObjectType> possibleInsideObjects = new ArrayList<>();
-    ArrayList<InsideObjectType> insideObjectsList = new ArrayList<>();
-    boolean isFireAllowed=true;
-    boolean isHouseBuildingAllowed=true;
-    boolean isTreeFellingAllowed=true;
+    private ArrayList<InsideObjectType> possibleInsideObjects = new ArrayList<>();
+    private ArrayList<InsideObjectType> insideObjectsList = new ArrayList<>();
+    private boolean isFireAllowed=true;
+    private boolean isHouseBuildingAllowed=true;
+    private boolean isTreeFellingAllowed=true;
+    private boolean isAlive = true;
     private final Random random = new Random();    
     protected ObjectInterest(InsideObjectType... types) {
         possibleInsideObjects.addAll(Arrays.asList(types));
@@ -44,5 +45,8 @@ public abstract class ObjectInterest {
     }
     public boolean getTreeFellingAllowedStatus(){
         return isTreeFellingAllowed;
+    }
+    public boolean getAliveStatus(){
+        return isAlive;
     }
 }
