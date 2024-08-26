@@ -5,6 +5,7 @@
 package classes;
 
 import java.util.Scanner;
+import regions.BaseRegion;
 
 
 /**
@@ -28,8 +29,12 @@ public class World {
         System.out.println(regionManager.getRegions());
         System.out.println("Выберите регион");
         int regionNum  = scanner.nextInt();
-        player.setCurrentRegion( regionManager.getCurrentRegion(regionNum));
+        player.setCurrentRegion( regionManager.getRegion(regionNum));
         System.out.println("Регионы, доступные для перемещения:");
-        System.out.println(regionManager.checkAvailableRegions(player.getCurrentRegion()));
+        System.out.println(player.getCurrentRegion());
+        for (BaseRegion region: regionManager.checkAvailableRegions(player.getCurrentRegion())){
+            System.out.print(regionManager.getRegionPosition(region));
+            System.out.println("" + region);
+        }
     }
 }
