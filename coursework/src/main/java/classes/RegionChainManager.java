@@ -9,15 +9,20 @@ package classes;
  * @author User
  */
 
+
 import java.util.ArrayList;
-import regions.BaseRegion;
+import java.util.HashMap;
+import regions.*;
 
 public class RegionChainManager {
-    private final ArrayList<BaseRegion> regions;
+ //   private HashMap<String, BaseRegion> regionTypes = new HashMap<>();
+    private final ArrayList<BaseRegion> regions = new ArrayList<>();
     private int currentPosition;
 
-    public RegionChainManager(ArrayList<BaseRegion> regions) {
-        this.regions =  regions;
+    public RegionChainManager() {
+       // regionTypes.put(DesertRegion.getRegionType(), new DesertRegion());
+      //  regionTypes.put(TundraRegion.getRegionType(), new TundraRegion());
+      //  regionTypes.put(MildClimateRegion.getRegionType(), new MildClimateRegion());
         this.currentPosition = 0;
     }
 
@@ -34,4 +39,16 @@ public class RegionChainManager {
         currentPosition = (currentPosition - 1 + regions.size()) % regions.size();
         return getCurrentRegion();
     }
+   public void generateRegions(String regionName, int count) {
+    for (int i = 0; i < count; i++) {
+        switch (regionName) {
+            case "Desert" -> regions.add(new DesertRegion());
+            case "Tundra" -> regions.add(new TundraRegion());
+            case "MildClimate" -> regions.add(new MildClimateRegion());
+        }
+    }
+   }
+   public ArrayList<BaseRegion> getRegions(){
+       return regions;
+   }
 }

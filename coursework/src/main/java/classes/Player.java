@@ -6,6 +6,7 @@ package classes;
 
 import commandClasses.*;
 import java.util.ArrayList;
+import regions.BaseRegion;
 
 /**
  *
@@ -14,9 +15,8 @@ import java.util.ArrayList;
 public class Player {
     private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
-    private Command buildHouseAction;
-    private Command fellTreeAction;
-    private Command makeFireAction;
+    private BaseRegion currentRegion;
+  //  private RegionChainManager = new RegionChainManager();
     
     public Inventory getInventory(){
         return inventory;
@@ -30,16 +30,12 @@ public class Player {
     public void setActionList(ArrayList<ActionResult> history){
         this.actionHistory = history;
     }
-    public ActionResult buildHouse(ObjectInterest obj){
-        return buildHouseAction.execute(obj, this);
+    public ActionResult makeAction(ObjectInterest obj,Inventory inventory, Command action){
+        return action.execute(obj, inventory);
     }
-    public ActionResult fellTree(ObjectInterest obj){
-        return fellTreeAction.execute(obj, this);
-    }
-    public ActionResult makeFire(ObjectInterest obj){
-        return makeFireAction.execute(obj, this);
-    }
-    public ActionResult makeAction(ObjectInterest obj, Command action){
-        return action.execute(obj, this);
+    public BaseRegion moveToRegion(){
+        
+        return null;
+        
     }
 }

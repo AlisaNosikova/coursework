@@ -2,6 +2,7 @@ package regions;
 
 
 import bioms.Tundra;
+import classes.ObjectInterest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,10 +23,14 @@ public class TundraRegion extends BaseRegion {
 
     public TundraRegion() {
         this.tundra = new Tundra() {};
+        generateObjectsInterestList();
+        for (ObjectInterest obj: getObjectsInterestList()){
+            obj.generateInsideObjectsList();
+        }
     }
 
     @Override
-    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+    protected ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList() {
         return tundra.getPossibleObjectsInterestList();
     }
 
@@ -37,5 +42,8 @@ public class TundraRegion extends BaseRegion {
     @Override
     protected int getMaxNumOfClasses() {
         return 5;
+    }
+    public static String getRegionType(){
+        return "Tundra";
     }
 }

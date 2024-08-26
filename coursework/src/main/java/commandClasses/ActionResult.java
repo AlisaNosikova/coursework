@@ -24,4 +24,13 @@ public class ActionResult {
     public void setObjectInerest(ObjectInterest obj){
         this.placeOfAction = obj;
     }
+    public String getMessage(){
+        return message;
+    }
+    public boolean getStatus(){
+        return status;
+    }
+    public ObjectInterest getPlaceOfAction(){
+        return placeOfAction;
+    }
 }

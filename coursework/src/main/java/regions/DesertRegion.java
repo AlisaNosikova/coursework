@@ -2,6 +2,7 @@ package regions;
 
 
 import bioms.Desert;
+import classes.*;
 import java.util.ArrayList;
 
 /*
@@ -18,10 +19,14 @@ public class DesertRegion extends BaseRegion {
 
     public DesertRegion() {
         this.desert = new Desert() {};
+        generateObjectsInterestList();
+        for (ObjectInterest obj: getObjectsInterestList()){
+            obj.generateInsideObjectsList();
+        }
     }
 
     @Override
-    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+    protected ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList() {
         return desert.getPossibleObjectsInterestList();
     }
 
@@ -34,4 +39,8 @@ public class DesertRegion extends BaseRegion {
     protected int getMaxNumOfClasses() {
         return 4;
     }
+    public static String getRegionType(){
+        return "Desert";
+    }
+    
 }

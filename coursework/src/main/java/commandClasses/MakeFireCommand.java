@@ -4,6 +4,7 @@
  */
 package commandClasses;
 
+import classes.Inventory;
 import classes.ObjectInterest;
 import classes.Player;
 
@@ -13,34 +14,28 @@ import classes.Player;
  */
 public class MakeFireCommand implements Command {
     private ActionResult actionResult= new ActionResult();
-    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest obj, Player player) {
-       this.player = player;
+    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
        boolean approveStatus = obj.getFireAllowedStatus();
-       if (approveStatus == true){
+       if (approveStatus && checkResources(1,inventory)){
            actionResult.setMessage("Вы развели костер!");
            actionResult.setStatus(true);
        }
        else{
-           actionResult.setMessage("Развести костер тут нельзя!");
-           actionResult.setStatus(false);
+           if (!checkResources(1,inventory)){
+           actionResult.setMessage("У вас недостаточно ресурсов!");
+             }
+       actionResult.setMessage("Развести костер тут нельзя!");
+       actionResult.setStatus(false);
        }
        actionResult.setObjectInerest(obj);
        return actionResult;
     }
-     public void checkResources(){
-       if (player.getInventory().getNumLogs()>=1){
-           player.getInventory().useInventory(1);
-             actionResult.setStatus(true);
-       }
-       else{
-           actionResult.setMessage("Развести костер невозможно! У вас нет ресурсов!");
-             actionResult.setStatus(false);
-       }
-       
+    @Override
+    public String getName(){
+      return "Развести косте";
+    }
    }
 
    
     
-}

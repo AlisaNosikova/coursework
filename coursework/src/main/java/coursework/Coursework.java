@@ -3,32 +3,15 @@
  */
 
 package coursework;
-
-import classes.ObjectInterest;
-import java.lang.reflect.InvocationTargetException;
-import regions.*;
+import classes.World;
 
 /**
  *
  * @author User
  */
 public class Coursework {
-    public static void main(String[] args) throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        BaseRegion tundraRegion = new TundraRegion();
-        tundraRegion.generateObjectsInterestList();
-        BaseRegion desertRegion = new DesertRegion();
-        desertRegion.generateObjectsInterestList();
-        BaseRegion mildClimateRegion = new MildClimateRegion();
-        mildClimateRegion.generateObjectsInterestList();
-        for (Object obj : tundraRegion.getObjectsInterestList()) {
-            
-            System.out.println("Объект интереса в ТУНДРА: " + obj);
-        }
-        for (Object obj : desertRegion.getObjectsInterestList()) {
-            System.out.println("Объект интереса в ПУСТЫНЯ: " + obj);
-        }
-        for (Object obj : mildClimateRegion.getObjectsInterestList()) {
-            System.out.println("Объект интереса в СМЕШАННЫЙ ЛЕС: " + obj);
-        }
-    }
+    public static void main(String[] args)  {
+        World world = new World();
+        world.start();
+}
 }

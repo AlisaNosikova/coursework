@@ -12,5 +12,15 @@ import classes.*;
  * @author User
  */
 public interface Command {
-    ActionResult execute(ObjectInterest objectInterest, Player player);
+    ActionResult execute(ObjectInterest objectInterest, Inventory inventory);
+    String getName();
+    public default boolean checkResources(int numLogs, Inventory inventory){
+        if (inventory.getNumLogs()>=numLogs){
+              inventory.useInventory(numLogs);
+              return true;
+       }
+       else{
+          return false;
+       }
+    }
 }

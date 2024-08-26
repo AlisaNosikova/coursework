@@ -5,7 +5,7 @@
 package commandClasses;
 
 import classes.ObjectInterest;
-import classes.Player;
+import classes.*;
 
 /**
  *
@@ -13,14 +13,12 @@ import classes.Player;
  */
 public class FellTreeCommand implements Command {
     private ActionResult actionResult= new ActionResult();
-    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest obj, Player player) {
-       this.player = player;
+    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
-       if (approveStatus == true){
+       if (approveStatus){
            actionResult.setMessage("Вы срубили дерево!");
-           player.getInventory().addToInventory(1);
+           inventory.addToInventory(1);
            actionResult.setStatus(true);
        }
        else{
@@ -29,5 +27,9 @@ public class FellTreeCommand implements Command {
        }
        actionResult.setObjectInerest(obj);
        return actionResult;
+    }
+    @Override
+    public String getName(){
+      return "Срубить дерево";
     }
 }

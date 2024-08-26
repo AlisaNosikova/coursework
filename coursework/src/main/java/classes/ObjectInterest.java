@@ -37,6 +37,9 @@ public abstract class ObjectInterest {
     public ArrayList<InsideObjectType> getPossibleInsideObjects(){
         return possibleInsideObjects;
     }
+    public ArrayList<InsideObjectType> getInsideObjects(){
+        return insideObjectsList;
+    }
     public boolean getFireAllowedStatus(){
         return isFireAllowed;
     }

@@ -4,6 +4,7 @@
  */
 package commandClasses;
 
+import classes.Inventory;
 import classes.ObjectInterest;
 import classes.Player;
 
@@ -13,32 +14,26 @@ import classes.Player;
  */
 public class BuildHouseCommand implements Command {
     private ActionResult actionResult= new ActionResult();
-    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest obj, Player player) {
-       this.player = player;
+    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
-       if (approveStatus == true){
+       if (approveStatus && checkResources(10,inventory)){
            actionResult.setMessage("Вы построили дерево!");
-           checkResources();
+           actionResult.setStatus(true);
        }
        else{
+           if(!checkResources(10,inventory)){
+               actionResult.setMessage("У вас недостаточно ресурсов!");
+           }
            actionResult.setMessage("Построить дом в этом месте нельзя!");
            actionResult.setStatus(false);
        }
        actionResult.setObjectInerest(obj);
        return actionResult;
     }
-   public void checkResources(){
-       if (player.getInventory().getNumLogs()>=10){
-           player.getInventory().useInventory(10);
-             actionResult.setStatus(true);
-       }
-       else{
-           actionResult.setMessage("Построить дом невозможно! У вас нет ресурсов!");
-             actionResult.setStatus(false);
-       }
-       
-   }
+    @Override
+    public String getName(){
+      return "Построить дерево";
+    }
 
 }
