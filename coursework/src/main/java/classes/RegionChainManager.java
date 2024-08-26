@@ -35,13 +35,11 @@ public class RegionChainManager {
         return availableRegions;
     }
     public BaseRegion moveNext() {
-        currentPosition = (currentPosition + 1) % regions.size();
-        return getCurrentRegion(currentPosition);
+        return getCurrentRegion((currentPosition + 1) % regions.size());
     }
 
     public BaseRegion movePrevious() {
-        currentPosition = (currentPosition - 1 + regions.size()) % regions.size();
-        return getCurrentRegion(currentPosition);
+        return getCurrentRegion((currentPosition - 1 + regions.size()) % regions.size());
     }
    public void generateRegions(String regionName, int count) {
     for (int i = 0; i < count; i++) {
