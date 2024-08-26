@@ -5,6 +5,7 @@ package regions;
 import bioms.MildClimate;
 import classes.*;
 import java.util.ArrayList;
+import static regions.DesertRegion.getRegionType;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -41,7 +42,12 @@ public class MildClimateRegion extends BaseRegion{
     protected int getMaxNumOfClasses() {
         return 5;
     }
-    public static String getRegionType(){
+    @Override
+    public String getRegionType(){
         return "MildClimate";
+    }
+    @Override
+    public void generateUniqueRegion(int index) {
+        this.uniqueName = getRegionType() + " region " + index;  
     }
 }

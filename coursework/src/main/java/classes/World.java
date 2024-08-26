@@ -26,7 +26,9 @@ public class World {
         String regionName = scanner.nextLine();
         int regionCount  = scanner.nextInt();
         regionManager.generateRegions(regionName, regionCount);
-        System.out.println(regionManager.getRegions());
+        for (BaseRegion region: regionManager.getRegions()){
+            System.out.println(region.getUniqueName());
+        }
         System.out.println("Выберите регион");
         int regionNum  = scanner.nextInt();
         player.setCurrentRegion( regionManager.getRegion(regionNum));

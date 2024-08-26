@@ -39,8 +39,13 @@ public class DesertRegion extends BaseRegion {
     protected int getMaxNumOfClasses() {
         return 4;
     }
-    public static String getRegionType(){
+    public String getRegionType(){
         return "Desert";
+    }
+
+    @Override
+    public void generateUniqueRegion(int index) {
+        this.uniqueName = getRegionType() + " region " + index;  
     }
     
 }

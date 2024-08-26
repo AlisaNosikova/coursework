@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static regions.DesertRegion.getRegionType;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,7 +44,12 @@ public class TundraRegion extends BaseRegion {
     protected int getMaxNumOfClasses() {
         return 5;
     }
-    public static String getRegionType(){
-        return "Tundra";
+    @Override
+    public String getRegionType(){
+        return "Tundra" ;
+    }
+    @Override
+    public void generateUniqueRegion(int index) {
+        this.uniqueName= getRegionType() + " region " + index;  
     }
 }

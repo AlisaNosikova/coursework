@@ -14,13 +14,9 @@ import java.util.ArrayList;
 import regions.*;
 
 public class RegionChainManager {
- //   private HashMap<String, BaseRegion> regionTypes = new HashMap<>();
     private final ArrayList<BaseRegion> regions = new ArrayList<>();
     private int currentPosition;
     public RegionChainManager() {
-       // regionTypes.put(DesertRegion.getRegionType(), new DesertRegion());
-      //  regionTypes.put(TundraRegion.getRegionType(), new TundraRegion());
-      //  regionTypes.put(MildClimateRegion.getRegionType(), new MildClimateRegion());
         this.currentPosition = 0;
     }
 
@@ -46,11 +42,14 @@ public class RegionChainManager {
     }
    public void generateRegions(String regionName, int count) {
     for (int i = 0; i < count; i++) {
+        BaseRegion region = null;
         switch (regionName) {
-            case "Desert" -> regions.add(new DesertRegion());
-            case "Tundra" -> regions.add(new TundraRegion());
-            case "MildClimate" -> regions.add(new MildClimateRegion());
+            case "Desert" -> region = new DesertRegion();
+            case "Tundra" -> region = new TundraRegion();
+            case "MildClimate" -> region = new MildClimateRegion();
         }
+        regions.add(region);
+        region.generateUniqueRegion(regions.indexOf(region)+1);
     }
    }
    public ArrayList<BaseRegion> getRegions(){

@@ -17,6 +17,7 @@ import java.util.Random;
 public abstract class BaseRegion {
     private final ArrayList<ObjectInterest> objectsInterestList = new ArrayList<>();
     private final Random random = new Random();
+    String uniqueName = null;
 
     protected abstract ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList();
 
@@ -44,7 +45,11 @@ public abstract class BaseRegion {
     public ArrayList<ObjectInterest> getObjectsInterestList() {
         return objectsInterestList;
     }
-    public String generateUniqueRegion(){
-        return null;
+    public abstract String getRegionType();
+    public void generateUniqueRegion(int index){
+        this.uniqueName = getRegionType() + " region " + index;  
+    }
+    public String getUniqueName(){
+        return uniqueName;
     }
 }
