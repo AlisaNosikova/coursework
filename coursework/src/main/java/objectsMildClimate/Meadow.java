@@ -11,6 +11,9 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Meadow extends ObjectInterest {
+    private boolean isFireAllowed=true;
+    private boolean isHouseBuildingAllowed=true;
+    private boolean isTreeFellingAllowed=false;
     public Meadow(){
         super(BUSH, LAKE, STREAM, PASTURE, HAYSTACK);
     }

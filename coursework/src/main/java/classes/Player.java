@@ -33,6 +33,12 @@ public class Player {
     public ActionResult makeAction(ObjectInterest obj,Inventory inventory, Command action){
         return action.execute(obj, inventory);
     }
+    public void setCurrentRegion(BaseRegion region){
+        this.currentRegion = region;
+    }
+    public BaseRegion getCurrentRegion(){
+        return currentRegion;
+    }
     public BaseRegion moveToRegion(){
         
         return null;

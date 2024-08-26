@@ -12,6 +12,9 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class OpenWoodland extends ObjectInterest {
+    private boolean isFireAllowed=true;
+    private boolean isHouseBuildingAllowed=true;
+    private boolean isTreeFellingAllowed=true;
      public OpenWoodland(){
          super(TREE,RAVINE,STREAM,ELEPHANT, GIRAFFE);
      }

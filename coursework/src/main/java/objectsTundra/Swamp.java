@@ -11,6 +11,9 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Swamp extends ObjectInterest {
+    private boolean isFireAllowed=false;
+    private boolean isHouseBuildingAllowed=false;
+    private boolean isTreeFellingAllowed=true;
      public Swamp(){
          super(TREE, BUSH);
      }

@@ -45,7 +45,8 @@ public enum InsideObjectType {
     CLIFF("Скала"),
     SNAKE("Змея"),
     LIZARD("Ящерица"),
-    HALOPHYTE("Галофит");
+    HALOPHYTE("Галофит"),
+    BONFIRE("Костер");
     
     
     private final String value;

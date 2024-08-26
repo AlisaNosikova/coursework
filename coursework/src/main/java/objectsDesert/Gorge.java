@@ -13,6 +13,9 @@ import static classes.InsideObjectType.*;
 public class Gorge extends ObjectInterest {
     public Gorge(){
         super(STREAM, BOULDER, CACTUS);
+        this.isFireAllowed=true;
+        this.isHouseBuildingAllowed=false;
+        this.isTreeFellingAllowed=true;
     }
     
 }

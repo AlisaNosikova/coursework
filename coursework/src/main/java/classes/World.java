@@ -5,7 +5,7 @@
 package classes;
 
 import java.util.Scanner;
-import regions.DesertRegion;
+import objectsDesert.Gorge;
 
 
 
@@ -24,6 +24,10 @@ public class World {
         
     }
     public void start(){
+        Gorge gorge = new Gorge();
+        System.out.println(gorge.getFireAllowedStatus());
+        System.out.println(gorge.getHouseBuildingAllowedStatus());
+        System.out.println(gorge.getTreeFellingAllowedStatus());
         Scanner scanner = new Scanner(System.in);
         String regionName = scanner.nextLine();
         int regionCount  = scanner.nextInt();
@@ -32,5 +36,6 @@ public class World {
         System.out.println("Выберите регион");
         int regionNum  = scanner.nextInt();
         System.out.println(regionManager.getRegions().get(regionNum).getObjectsInterestList());
+        
     }
 }

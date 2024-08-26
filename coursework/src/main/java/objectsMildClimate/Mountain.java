@@ -11,6 +11,9 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Mountain extends ObjectInterest {
+    private boolean isFireAllowed=true;
+    private boolean isHouseBuildingAllowed=true;
+    private boolean isTreeFellingAllowed=true;
   public Mountain(){
       super(CLIFF, TREE, STREAM, SNAKE, LIZARD);
   }

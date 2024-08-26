@@ -18,6 +18,7 @@ public class FellTreeCommand implements Command {
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
        if (approveStatus){
            actionResult.setMessage("Вы срубили дерево!");
+           obj.removeFromInsideObjectsList(InsideObjectType.HOUSE);
            inventory.addToInventory(1);
            actionResult.setStatus(true);
        }

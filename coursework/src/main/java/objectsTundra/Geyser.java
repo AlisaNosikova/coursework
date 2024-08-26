@@ -12,6 +12,9 @@ import classes.ObjectInterest;
  * @author User
  */
 public class Geyser extends ObjectInterest{
+    private boolean isFireAllowed=false;
+    private boolean isHouseBuildingAllowed=false;
+    private boolean isTreeFellingAllowed=false;
     public Geyser(){
         super(HILL, THERMAL_POOL,STREAM);
     }

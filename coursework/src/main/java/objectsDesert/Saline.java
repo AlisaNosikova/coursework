@@ -11,6 +11,9 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Saline extends ObjectInterest {
+    private boolean isFireAllowed=true;
+    private boolean isHouseBuildingAllowed=false;
+    private boolean isTreeFellingAllowed=false;
      public Saline(){
          super(LAKE, BUSH, CACTUS, HALOPHYTE);
      }

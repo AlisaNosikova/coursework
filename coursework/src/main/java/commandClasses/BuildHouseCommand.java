@@ -4,9 +4,9 @@
  */
 package commandClasses;
 
+import classes.InsideObjectType;
 import classes.Inventory;
 import classes.ObjectInterest;
-import classes.Player;
 
 /**
  *
@@ -18,7 +18,8 @@ public class BuildHouseCommand implements Command {
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
        if (approveStatus && checkResources(10,inventory)){
-           actionResult.setMessage("Вы построили дерево!");
+           actionResult.setMessage("Вы построили дом!");
+           obj.addToInsideObjectsList(InsideObjectType.TREE);
            actionResult.setStatus(true);
        }
        else{

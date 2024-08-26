@@ -7,9 +7,6 @@ package classes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
-import static classes.InsideObjectType.*;
-
 /**
  *
  * @author User
@@ -17,9 +14,9 @@ import static classes.InsideObjectType.*;
 public abstract class ObjectInterest {
     private ArrayList<InsideObjectType> possibleInsideObjects = new ArrayList<>();
     private ArrayList<InsideObjectType> insideObjectsList = new ArrayList<>();
-    private boolean isFireAllowed=true;
-    private boolean isHouseBuildingAllowed=true;
-    private boolean isTreeFellingAllowed=true;
+    protected boolean isFireAllowed;
+    protected boolean isHouseBuildingAllowed;
+    protected boolean isTreeFellingAllowed;
     private boolean isAlive = true;
     private final Random random = new Random();    
     public ObjectInterest(InsideObjectType... types) {
@@ -49,7 +46,22 @@ public abstract class ObjectInterest {
     public boolean getTreeFellingAllowedStatus(){
         return isTreeFellingAllowed;
     }
+    public void setFireAllowedStatus(boolean status){
+        this.isFireAllowed = status;
+    }
+    public void setHouseBuildingAllowedStatus(boolean status){
+        this.isHouseBuildingAllowed = status;
+    }
+    public void setTreeFellingAllowedStatus(boolean status){
+        this.isTreeFellingAllowed = status;
+    }
     public boolean getAliveStatus(){
         return isAlive;
+    }
+    public void addToInsideObjectsList(InsideObjectType type){
+        insideObjectsList.add(type);
+    }
+    public void removeFromInsideObjectsList(InsideObjectType type){
+        insideObjectsList.remove(type);
     }
 }
