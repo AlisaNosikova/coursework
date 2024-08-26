@@ -11,14 +11,12 @@ package classes;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import regions.*;
 
 public class RegionChainManager {
  //   private HashMap<String, BaseRegion> regionTypes = new HashMap<>();
     private final ArrayList<BaseRegion> regions = new ArrayList<>();
     private int currentPosition;
-
     public RegionChainManager() {
        // regionTypes.put(DesertRegion.getRegionType(), new DesertRegion());
       //  regionTypes.put(TundraRegion.getRegionType(), new TundraRegion());
@@ -26,18 +24,24 @@ public class RegionChainManager {
         this.currentPosition = 0;
     }
 
-    public BaseRegion getCurrentRegion() {
+    public BaseRegion getCurrentRegion(int currentPosition) {
         return regions.get(currentPosition);
     }
-
+    public ArrayList<BaseRegion> checkAvailableRegions(BaseRegion currentRegion){
+        this.currentPosition = regions.indexOf(currentRegion);
+        ArrayList<BaseRegion> availableRegions = new ArrayList<>();
+        availableRegions.add(moveNext());
+        availableRegions.add(movePrevious());
+        return availableRegions;
+    }
     public BaseRegion moveNext() {
         currentPosition = (currentPosition + 1) % regions.size();
-        return getCurrentRegion();
+        return getCurrentRegion(currentPosition);
     }
 
     public BaseRegion movePrevious() {
         currentPosition = (currentPosition - 1 + regions.size()) % regions.size();
-        return getCurrentRegion();
+        return getCurrentRegion(currentPosition);
     }
    public void generateRegions(String regionName, int count) {
     for (int i = 0; i < count; i++) {

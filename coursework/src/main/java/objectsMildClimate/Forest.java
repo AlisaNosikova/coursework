@@ -11,11 +11,11 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Forest extends ObjectInterest {
-    private boolean isFireAllowed=true;
-    private boolean isHouseBuildingAllowed=true;
-    private boolean isTreeFellingAllowed=true;
     public Forest(){
         super(TREE, BEAR, FLOWERS, BUSH, HARE, MOOSE);
+        this.isFireAllowed=true;
+        this.isHouseBuildingAllowed=true;
+        this.isTreeFellingAllowed=true;
     }
     
 }

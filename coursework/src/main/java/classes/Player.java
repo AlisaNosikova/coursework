@@ -16,7 +16,6 @@ public class Player {
     private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
     private BaseRegion currentRegion;
-  //  private RegionChainManager = new RegionChainManager();
     
     public Inventory getInventory(){
         return inventory;
@@ -38,10 +37,5 @@ public class Player {
     }
     public BaseRegion getCurrentRegion(){
         return currentRegion;
-    }
-    public BaseRegion moveToRegion(){
-        
-        return null;
-        
     }
 }

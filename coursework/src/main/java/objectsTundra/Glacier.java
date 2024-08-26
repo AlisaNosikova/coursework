@@ -11,10 +11,10 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Glacier extends ObjectInterest {
-    private boolean isFireAllowed=false;
-    private boolean isHouseBuildingAllowed=false;
-    private boolean isTreeFellingAllowed=false;
      public Glacier(){
-         super(CAVE,POLAR_BEAR, SNOW_DUNE);
+        super(CAVE,POLAR_BEAR, SNOW_DUNE);
+        this.isFireAllowed=false;
+        this.isHouseBuildingAllowed=false;
+        this.isTreeFellingAllowed=false;
      }
 }

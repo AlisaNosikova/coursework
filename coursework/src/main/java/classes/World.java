@@ -36,6 +36,7 @@ public class World {
         System.out.println("Выберите регион");
         int regionNum  = scanner.nextInt();
         System.out.println(regionManager.getRegions().get(regionNum).getObjectsInterestList());
-        
+        regionManager.checkAvailableRegions(player.getCurrentRegion());
+        player.setCurrentRegion( regionManager.getCurrentRegion(regionNum));
     }
 }

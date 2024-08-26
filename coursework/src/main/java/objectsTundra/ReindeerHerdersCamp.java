@@ -10,12 +10,12 @@ import static classes.InsideObjectType.*;
  *
  * @author User
  */
-public class ReindeerHerdersCamp extends ObjectInterest {  
-    private boolean isFireAllowed=true;
-    private boolean isHouseBuildingAllowed=false;
-    private boolean isTreeFellingAllowed=true;
+public class ReindeerHerdersCamp extends ObjectInterest { 
      public ReindeerHerdersCamp(){
-         super(REINDEER,REINDEER_HERDER,TENT, TREE);
+        super(REINDEER,REINDEER_HERDER,TENT, TREE);
+        this.isFireAllowed=true;
+        this.isHouseBuildingAllowed=false;
+        this.isTreeFellingAllowed=true;
      }
              
     

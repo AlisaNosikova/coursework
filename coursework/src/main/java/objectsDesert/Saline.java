@@ -11,11 +11,11 @@ import static classes.InsideObjectType.*;
  * @author User
  */
 public class Saline extends ObjectInterest {
-    private boolean isFireAllowed=true;
-    private boolean isHouseBuildingAllowed=false;
-    private boolean isTreeFellingAllowed=false;
      public Saline(){
-         super(LAKE, BUSH, CACTUS, HALOPHYTE);
+        super(LAKE, BUSH, CACTUS, HALOPHYTE);
+        this.isFireAllowed=true;
+        this.isHouseBuildingAllowed=false;
+        this.isTreeFellingAllowed=false;
      }
     
 }
