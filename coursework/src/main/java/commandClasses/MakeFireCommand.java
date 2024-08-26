@@ -4,9 +4,9 @@
  */
 package commandClasses;
 
+import classes.InsideObjectType;
 import classes.Inventory;
 import classes.ObjectInterest;
-import classes.Player;
 
 /**
  *
@@ -18,6 +18,7 @@ public class MakeFireCommand implements Command {
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
        boolean approveStatus = obj.getFireAllowedStatus();
        if (approveStatus && checkResources(1,inventory)){
+           obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
            actionResult.setMessage("Вы развели костер!");
            actionResult.setStatus(true);
        }
