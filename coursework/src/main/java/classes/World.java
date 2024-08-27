@@ -39,20 +39,19 @@ public class World {
             System.out.println("Доступные команды для взаимодействия с ОИ: " + commandManager.getCommandList().keySet());
             System.out.println("Если вы хотите переместится в другой регион, введите: move");
             System.out.println("Введите команду из предложенных: ");
-            scanner.nextLine();
             String actionName = scanner.nextLine();
             if ("move".equals(actionName)) {
                 moveToRegion();
             }
             else{
+                
             System.out.println("Список ОИ в текущем регионе: ");
             for (ObjectInterest object : player.getCurrentRegion().getObjectsInterestList()) {
                 System.out.println(object.getObjectType());
             }
             System.out.println("Введите номер объекта интереса из предложенных: ");
             int objectIndex = scanner.nextInt();
-            System.out.println(actionName);
-            System.out.println(player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(objectIndex-1), commandManager.getCommandList().get("Построить дом")).getCompleteResult());
+            System.out.println(player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(objectIndex-1), commandManager.getCommandList().get(actionName)).getCompleteResult());
         }
         }
     }

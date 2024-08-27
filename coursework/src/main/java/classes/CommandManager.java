@@ -20,9 +20,9 @@ public class CommandManager {
     }
 
     public void completeCommandList() {
-        commandList.put("Срубить дерево", new FellTreeCommand());
-        commandList.put("Построить дом", new BuildHouseCommand());
-        commandList.put("Развести костер", new MakeFireCommand());
+        commandList.put("Fell Tree", new FellTreeCommand());
+        commandList.put("Build House", new BuildHouseCommand());
+        commandList.put("Make Fire", new MakeFireCommand());
     }
 
     public HashMap<String, Command> getCommandList() {
