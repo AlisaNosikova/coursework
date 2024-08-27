@@ -11,12 +11,16 @@ import classes.ObjectInterest;
  *
  * @author User
  */
-public class Geyser extends ObjectInterest{
-    public Geyser(){
-        super(HILL, THERMAL_POOL,STREAM);
-        this.isFireAllowed=false;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=false;
+public class Geyser extends ObjectInterest {
+
+    public Geyser() {
+        super(HILL, THERMAL_POOL, STREAM);
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
     }
-    
+    @Override
+    public String getObjectType() {
+        return "Гейзер";
+    }
+
 }

@@ -6,16 +6,25 @@ package objectsDesert;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class Gorge extends ObjectInterest {
-    public Gorge(){
+
+    public Gorge() {
         super(STREAM, BOULDER, CACTUS);
-        this.isFireAllowed=true;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=true;
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+ 
     }
-    
+
+    @Override
+    public String getObjectType() {
+        return "Ущелье";
+    }
+
+   
+
 }

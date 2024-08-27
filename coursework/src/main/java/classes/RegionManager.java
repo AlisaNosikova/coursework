@@ -8,31 +8,37 @@ package classes;
  *
  * @author User
  */
-
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Supplier;
 import regions.*;
 
-public class RegionChainManager {
+public class RegionManager {
+
     private final ArrayList<BaseRegion> regions = new ArrayList<>();
     private int currentPosition;
-    public RegionChainManager() {
+
+    public RegionManager() {
         this.currentPosition = 0;
     }
 
     public BaseRegion getRegion(int regionPosition) {
         return regions.get(regionPosition);
     }
-    public int getRegionPosition(BaseRegion region){
+
+    public int getRegionPosition(BaseRegion region) {
         return regions.indexOf(region);
     }
-    public ArrayList<BaseRegion> checkAvailableRegions(BaseRegion currentRegion){
+
+    public ArrayList<BaseRegion> checkAvailableRegions(BaseRegion currentRegion) {
         this.currentPosition = regions.indexOf(currentRegion);
         ArrayList<BaseRegion> availableRegions = new ArrayList<>();
         availableRegions.add(moveNext());
         availableRegions.add(movePrevious());
         return availableRegions;
     }
+
     public BaseRegion moveNext() {
         return getRegion((currentPosition + 1) % regions.size());
     }
@@ -40,19 +46,26 @@ public class RegionChainManager {
     public BaseRegion movePrevious() {
         return getRegion((currentPosition - 1 + regions.size()) % regions.size());
     }
-   public void generateRegions(String regionName, int count) {
-    for (int i = 0; i < count; i++) {
-        BaseRegion region = null;
-        switch (regionName) {
-            case "Desert" -> region = new DesertRegion();
-            case "Tundra" -> region = new TundraRegion();
-            case "MildClimate" -> region = new MildClimateRegion();
+
+    public void generateRegions(int countTundra, int countDesert, int countMildClimate) {
+        for (int i=0;i<countTundra;i++){
+            BaseRegion region = new TundraRegion();
+            region.generateUniqueRegion(i+1);
+            regions.add(region);
         }
-        regions.add(region);
-        region.generateUniqueRegion(regions.indexOf(region)+1);
+        for (int i=0;i<countDesert;i++){
+            BaseRegion region = new DesertRegion();
+            region.generateUniqueRegion(i+1);
+            regions.add(region);
+        }
+        for (int i=0;i<countMildClimate;i++){
+            BaseRegion region = new MildClimateRegion();
+            region.generateUniqueRegion(i+1);
+            regions.add(region);
+        }
     }
-   }
-   public ArrayList<BaseRegion> getRegions(){
-       return regions;
-   }
+
+    public ArrayList<BaseRegion> getRegions() {
+        return regions;
+    }
 }

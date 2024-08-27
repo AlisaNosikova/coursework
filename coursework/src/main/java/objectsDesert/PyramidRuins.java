@@ -6,17 +6,22 @@ package objectsDesert;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class PyramidRuins extends ObjectInterest {
-      public PyramidRuins(){
-        super(PYRAMID, TOMB);
-        this.isFireAllowed=true;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=false;
 
-     }
-    
+    public PyramidRuins() {
+        super(PYRAMID, TOMB);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+
+    }
+    @Override
+    public String getObjectType() {
+        return "Руины пирамид";
+    }
+
 }

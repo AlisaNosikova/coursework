@@ -11,26 +11,36 @@ import classes.*;
  * @author User
  */
 public class ActionResult {
+
     private String message;
     private boolean status;
     private boolean isInventoryChanged;
     private ObjectInterest placeOfAction;
-    public void setMessage(String message){
+
+    public void setMessage(String message) {
         this.message = message;
     }
-    public void setStatus(boolean status){
+
+    public void setStatus(boolean status) {
         this.status = status;
     }
-    public void setObjectInerest(ObjectInterest obj){
+
+    public void setObjectInerest(ObjectInterest obj) {
         this.placeOfAction = obj;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
-    public boolean getStatus(){
+
+    public boolean getStatus() {
         return status;
     }
-    public ObjectInterest getPlaceOfAction(){
+
+    public ObjectInterest getPlaceOfAction() {
         return placeOfAction;
+    }
+    public String getCompleteResult(){
+        return message + " в объекте интереса " + placeOfAction;
     }
 }

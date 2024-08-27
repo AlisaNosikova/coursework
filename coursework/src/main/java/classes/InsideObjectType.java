@@ -47,8 +47,7 @@ public enum InsideObjectType {
     LIZARD("Ящерица"),
     HALOPHYTE("Галофит"),
     BONFIRE("Костер");
-    
-    
+
     private final String value;
 
     InsideObjectType(String value) {

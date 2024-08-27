@@ -6,16 +6,21 @@ package objectsDesert;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class Saline extends ObjectInterest {
-     public Saline(){
+
+    public Saline() {
         super(LAKE, BUSH, CACTUS, HALOPHYTE);
-        this.isFireAllowed=true;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=false;
-     }
-    
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Солончак";
+    }
+
 }

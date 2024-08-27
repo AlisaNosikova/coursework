@@ -12,13 +12,20 @@ import java.util.HashMap;
  * @author User
  */
 public class CommandManager {
+
     private HashMap<String, Command> commandList = new HashMap<>();
-    public void completeCommandList(){
+    
+    CommandManager(){
+        completeCommandList();
+    }
+
+    public void completeCommandList() {
         commandList.put("Срубить дерево", new FellTreeCommand());
         commandList.put("Построить дом", new BuildHouseCommand());
         commandList.put("Развести костер", new MakeFireCommand());
     }
-    public HashMap<String, Command> getCommandList(){
+
+    public HashMap<String, Command> getCommandList() {
         return commandList;
     }
 

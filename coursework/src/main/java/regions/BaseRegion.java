@@ -9,12 +9,12 @@ import java.util.Random;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author User
  */
 public abstract class BaseRegion {
+
     private final ArrayList<ObjectInterest> objectsInterestList = new ArrayList<>();
     private final Random random = new Random();
     String uniqueName = null;
@@ -25,7 +25,7 @@ public abstract class BaseRegion {
 
     protected abstract int getMaxNumOfClasses();
 
-    public void generateObjectsInterestList(){
+    public void generateObjectsInterestList() {
         ArrayList<Class<? extends ObjectInterest>> possibleObjectsInterestList = getPossibleObjectsInterestList();
         int size = possibleObjectsInterestList.size();
 
@@ -35,21 +35,26 @@ public abstract class BaseRegion {
             int randomIndex = random.nextInt(size);
             Class<? extends ObjectInterest> clazz = possibleObjectsInterestList.get(randomIndex);
             try {
-                objectsInterestList.add( clazz.getDeclaredConstructor().newInstance());
-                }catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-                    ex.getStackTrace();
-                }
-             
+               ObjectInterest obj = clazz.getDeclaredConstructor().newInstance();
+                objectsInterestList.add(clazz.getDeclaredConstructor().newInstance());
+            } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+                ex.getStackTrace();
+            }
+
         }
     }
+
     public ArrayList<ObjectInterest> getObjectsInterestList() {
         return objectsInterestList;
     }
+
     public abstract String getRegionType();
-    public void generateUniqueRegion(int index){
-        this.uniqueName = getRegionType() + " region " + index;  
+
+    public void generateUniqueRegion(int index) {
+        this.uniqueName = getRegionType() + " region " + index;
     }
-    public String getUniqueName(){
+
+    public String getUniqueName() {
         return uniqueName;
     }
 }

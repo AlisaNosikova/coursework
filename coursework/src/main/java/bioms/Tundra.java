@@ -12,6 +12,7 @@ import objectsTundra.*;
  * @author User
  */
 public abstract class Tundra extends Biom {
+
     public Tundra() {
         super(Glacier.class, Geyser.class, OpenWoodland.class, ReindeerHerdersCamp.class, Swamp.class);
     }

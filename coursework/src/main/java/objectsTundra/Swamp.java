@@ -6,16 +6,21 @@ package objectsTundra;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class Swamp extends ObjectInterest {
-     public Swamp(){
+
+    public Swamp() {
         super(TREE, BUSH);
-        this.isFireAllowed=false;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=true;
-     }
-    
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Болото";
+    }
+
 }

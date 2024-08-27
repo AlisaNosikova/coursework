@@ -13,30 +13,31 @@ import classes.ObjectInterest;
  * @author User
  */
 public class MakeFireCommand implements Command {
-    private ActionResult actionResult= new ActionResult();
+
+    private ActionResult actionResult = new ActionResult();
+
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
-       boolean approveStatus = obj.getFireAllowedStatus();
-       if (approveStatus && checkResources(1,inventory)){
-           obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
-           actionResult.setMessage("Вы развели костер!");
-           actionResult.setStatus(true);
-       }
-       else{
-           if (!checkResources(1,inventory)){
-           actionResult.setMessage("У вас недостаточно ресурсов!");
-             }
-       actionResult.setMessage("Развести костер тут нельзя!");
-       actionResult.setStatus(false);
-       }
-       actionResult.setObjectInerest(obj);
-       return actionResult;
+        boolean approveStatus = obj.getFireAllowedStatus();
+        if (approveStatus && checkResources(1, inventory)) {
+            obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
+            actionResult.setMessage("Вы развели костер!");
+            inventory.useInventory(1);
+            actionResult.setStatus(true);
+        } else {
+            if (!approveStatus) {
+                actionResult.setMessage("Развести костер тут нельзя!");
+            } else {
+                actionResult.setMessage("У вас недостаточно ресурсов!");
+            }
+            actionResult.setStatus(false);
+        }
+        actionResult.setObjectInerest(obj);
+        return actionResult;
     }
-    @Override
-    public String getName(){
-      return "Развести косте";
-    }
-   }
 
-   
-    
+    @Override
+    public String getName() {
+        return "Развести костер";
+    }
+}

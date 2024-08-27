@@ -12,25 +12,27 @@ import classes.*;
  * @author User
  */
 public class FellTreeCommand implements Command {
-    private ActionResult actionResult= new ActionResult();
+
+    private ActionResult actionResult = new ActionResult();
+
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
-       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
-       if (approveStatus){
-           actionResult.setMessage("Вы срубили дерево!");
-           obj.removeFromInsideObjectsList(InsideObjectType.HOUSE);
-           inventory.addToInventory(1);
-           actionResult.setStatus(true);
-       }
-       else{
-           actionResult.setMessage("Срубить дерево тут нельзя!");
-           actionResult.setStatus(false);
-       }
-       actionResult.setObjectInerest(obj);
-       return actionResult;
+        boolean approveStatus = obj.searchForTree();
+        if (approveStatus) {
+            actionResult.setMessage("Вы срубили дерево!");
+            obj.removeFromInsideObjectsList(InsideObjectType.TREE);
+            inventory.addToInventory(1);
+            actionResult.setStatus(true);
+        } else {
+            actionResult.setMessage("Срубить дерево тут нельзя!");
+            actionResult.setStatus(false);
+        }
+        actionResult.setObjectInerest(obj);
+        return actionResult;
     }
+
     @Override
-    public String getName(){
-      return "Срубить дерево";
+    public String getName() {
+        return "Срубить дерево";
     }
 }

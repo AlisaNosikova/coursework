@@ -6,16 +6,21 @@ package objectsMildClimate;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class Village extends ObjectInterest {
-    public Village(){
+
+    public Village() {
         super(HOUSE, PERSON, SHOP, CHURCH);
-        this.isFireAllowed=true;
-        this.isHouseBuildingAllowed=true;
-        this.isTreeFellingAllowed=true;
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
     }
-    
+    @Override
+    public String getObjectType() {
+        return "Деревня";
+    }
+
 }

@@ -12,6 +12,7 @@ import objectsDesert.*;
  * @author User
  */
 public abstract class Desert extends Biom {
+
     public Desert() {
         super(Gorge.class, Oasis.class, PyramidRuins.class, Saline.class);
     }

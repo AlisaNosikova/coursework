@@ -13,29 +13,40 @@ import regions.BaseRegion;
  * @author User
  */
 public class Player {
+
     private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
     private BaseRegion currentRegion;
+
+    public Player() {
+        this.inventory = new Inventory(0);
+    }
     
-    public Inventory getInventory(){
+    public Inventory getInventory() {
         return inventory;
     }
-    public ArrayList<ActionResult> getActionList(){
+
+    public ArrayList<ActionResult> getActionList() {
         return actionHistory;
     }
-    public void setInventory(Inventory invent){
+
+    public void setInventory(Inventory invent) {
         this.inventory = invent;
     }
-    public void setActionList(ArrayList<ActionResult> history){
+
+    public void setActionList(ArrayList<ActionResult> history) {
         this.actionHistory = history;
     }
-    public ActionResult makeAction(ObjectInterest obj,Inventory inventory, Command action){
+
+    public ActionResult makeAction(ObjectInterest obj, Command action) {
         return action.execute(obj, inventory);
     }
-    public void setCurrentRegion(BaseRegion region){
+
+    public void setCurrentRegion(BaseRegion region) {
         this.currentRegion = region;
     }
-    public BaseRegion getCurrentRegion(){
+
+    public BaseRegion getCurrentRegion() {
         return currentRegion;
     }
 }

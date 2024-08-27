@@ -6,17 +6,21 @@ package objectsTundra;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
-public class ReindeerHerdersCamp extends ObjectInterest { 
-     public ReindeerHerdersCamp(){
-        super(REINDEER,REINDEER_HERDER,TENT, TREE);
-        this.isFireAllowed=true;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=true;
-     }
-             
-    
+public class ReindeerHerdersCamp extends ObjectInterest {
+
+    public ReindeerHerdersCamp() {
+        super(REINDEER, REINDEER_HERDER, TENT, TREE);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Стоянка оленеводов";
+    }
+
 }

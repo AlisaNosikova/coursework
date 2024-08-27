@@ -1,31 +1,29 @@
 package regions;
 
-
-
 import bioms.MildClimate;
 import classes.*;
 import java.util.ArrayList;
-import static regions.DesertRegion.getRegionType;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author User
  */
-public class MildClimateRegion extends BaseRegion{
+public class MildClimateRegion extends BaseRegion {
+
     private final MildClimate mildClimate;
 
     public MildClimateRegion() {
-        this.mildClimate = new MildClimate() {};
+        this.mildClimate = new MildClimate() {
+        };
         generateObjectsInterestList();
-        for (ObjectInterest obj: getObjectsInterestList()){
+        for (ObjectInterest obj : getObjectsInterestList()) {
             obj.generateInsideObjectsList();
         }
-        
+
     }
 
     @Override
@@ -42,12 +40,14 @@ public class MildClimateRegion extends BaseRegion{
     protected int getMaxNumOfClasses() {
         return 5;
     }
+
     @Override
-    public String getRegionType(){
+    public String getRegionType() {
         return "MildClimate";
     }
+
     @Override
     public void generateUniqueRegion(int index) {
-        this.uniqueName = getRegionType() + " region " + index;  
+        this.uniqueName = getRegionType() + " region " + index;
     }
 }

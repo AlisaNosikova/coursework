@@ -6,15 +6,20 @@ package objectsTundra;
 
 import classes.ObjectInterest;
 import static classes.InsideObjectType.*;
+
 /**
  *
  * @author User
  */
 public class Glacier extends ObjectInterest {
-     public Glacier(){
-        super(CAVE,POLAR_BEAR, SNOW_DUNE);
-        this.isFireAllowed=false;
-        this.isHouseBuildingAllowed=false;
-        this.isTreeFellingAllowed=false;
-     }
+
+    public Glacier() {
+        super(CAVE, POLAR_BEAR, SNOW_DUNE);
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Ледник";
+    }
 }
