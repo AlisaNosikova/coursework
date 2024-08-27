@@ -13,9 +13,9 @@ import classes.ObjectInterest;
  * @author User
  */
 public class BuildHouseCommand implements Command {
-
+    
     private ActionResult actionResult = new ActionResult();
-
+    
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.getHouseBuildingAllowedStatus();
@@ -37,10 +37,10 @@ public class BuildHouseCommand implements Command {
         actionResult.setObjectInerest(obj);
         return actionResult;
     }
-
+    
     @Override
     public String getName() {
         return "Построить дом";
     }
-
+    
 }

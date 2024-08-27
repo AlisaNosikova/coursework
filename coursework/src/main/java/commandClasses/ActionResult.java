@@ -40,7 +40,8 @@ public class ActionResult {
     public ObjectInterest getPlaceOfAction() {
         return placeOfAction;
     }
-    public String getCompleteResult(){
+
+    public String getCompleteResult() {
         return message + " в объекте интереса " + placeOfAction;
     }
 }

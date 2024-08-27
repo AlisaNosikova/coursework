@@ -25,6 +25,7 @@ public class World {
     }
 
     public void start() {
+        boolean doActions = true;
         System.out.println("Введите количество регионов для генерации мира");
         System.out.println("Ввведите количество регионов Тундра: ");
         int countTundra = ChoiceCheck();
@@ -34,21 +35,31 @@ public class World {
         int countMildClimate = ChoiceCheck();
         regionManager.generateRegions(countTundra, countDesert, countMildClimate);
         player.setCurrentRegion(regionManager.getRegion(0));
-        while (true) {
+        while (doActions) {
+            System.out.println("----------------");
             System.out.print("Ваш текущий регион : " + player.getCurrentRegion().getUniqueName());
             System.out.println("Доступные команды для взаимодействия с ОИ: " + commandManager.getCommandList().keySet());
             System.out.println("Если вы хотите переместится в другой регион, введите: move");
+            System.out.println("Если вы хотите посмотреть содержимое инвентаря, введите: checkInventory");
+            System.out.println("Если вы хотите завершить игру, введите: exit");
             System.out.println("Введите команду из предложенных: ");
             String actionName = scanner.nextLine();
             if ("move".equals(actionName)) {
                 moveToRegion();
             }
-            else{
-                
+            else if ("checkInventory".equals(actionName)) {
+                System.out.println("Количество бревен сейчас: " + player.getInventory().getNumLogs());
+            }
+            else if("exit".equals(actionName)){
+                System.out.println("Спасибо за игру!");
+                doActions = false;
+            }
+            else{  
             System.out.println("Список ОИ в текущем регионе: ");
             for (ObjectInterest object : player.getCurrentRegion().getObjectsInterestList()) {
                 System.out.println(object.getObjectType());
             }
+            scanner.nextLine();
             System.out.println("Введите номер объекта интереса из предложенных: ");
             int objectIndex = scanner.nextInt();
             System.out.println(player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(objectIndex-1), commandManager.getCommandList().get(actionName)).getCompleteResult());
