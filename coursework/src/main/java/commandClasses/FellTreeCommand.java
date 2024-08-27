@@ -18,15 +18,17 @@ public class FellTreeCommand implements Command {
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.searchForTree();
+        String message;
         if (approveStatus) {
-            actionResult.setMessage("Вы срубили дерево!");
+           message = "Вы срубили дерево!";
             obj.removeFromInsideObjectsList(InsideObjectType.TREE);
             inventory.addToInventory(1);
             actionResult.setStatus(true);
         } else {
-            actionResult.setMessage("Срубить дерево тут нельзя!");
+           message = "Срубить дерево тут нельзя!";
             actionResult.setStatus(false);
         }
+        actionResult.setMessage(message);
         actionResult.setObjectInerest(obj);
         return actionResult;
     }

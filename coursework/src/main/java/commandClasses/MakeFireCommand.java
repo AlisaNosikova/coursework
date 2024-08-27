@@ -7,6 +7,7 @@ package commandClasses;
 import classes.InsideObjectType;
 import classes.Inventory;
 import classes.ObjectInterest;
+import java.util.Random;
 
 /**
  *
@@ -19,19 +20,25 @@ public class MakeFireCommand implements Command {
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.getFireAllowedStatus();
+        String message;
         if (approveStatus && checkResources(1, inventory)) {
             obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
-            actionResult.setMessage("Вы развели костер!");
+            if (burnObjectInterest()) {
+                message = "Вы развели костер и сожгли объект интереса в этом регионе!";
+            } else {
+                message = "Вы развели костер!";
+            }
             inventory.useInventory(1);
             actionResult.setStatus(true);
         } else {
             if (!approveStatus) {
-                actionResult.setMessage("Развести костер тут нельзя!");
+                message = "Развести костер тут нельзя!";
             } else {
-                actionResult.setMessage("У вас недостаточно ресурсов!");
+                message = "У вас недостаточно ресурсов!";
             }
             actionResult.setStatus(false);
         }
+        actionResult.setMessage(message);
         actionResult.setObjectInerest(obj);
         return actionResult;
     }
@@ -39,5 +46,11 @@ public class MakeFireCommand implements Command {
     @Override
     public String getName() {
         return "Развести костер";
+    }
+
+    public boolean burnObjectInterest() {
+        Random random = new Random();
+        double probability = 0.01;
+        return (random.nextDouble() <= probability);
     }
 }
