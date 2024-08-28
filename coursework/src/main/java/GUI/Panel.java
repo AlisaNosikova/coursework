@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -44,6 +46,7 @@ public class Panel extends JPanel {
     TextField countDesert;
     TextField countMildClimate;
     JButton goButton;
+    JButton showGraph;
     RegionManager regionManager = new RegionManager();
     CommandManager commandManager = new CommandManager();
     Player player = new Player();
@@ -141,10 +144,14 @@ public class Panel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (choiceCheck(countTundra) && choiceCheck(countDesert) && choiceCheck(countMildClimate)){
+              if (checkChoice(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()))){ 
+               
             removeAll();
             revalidate();
             repaint();
             try {
+               
                 regionManager.generateRegions(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()));
             } catch (IOException ex) {
                 Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,8 +164,37 @@ public class Panel extends JPanel {
                 Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+              }
     }
-
+    public boolean checkChoice(int countTundra, int countDesert, int countMildClimate){
+        boolean result = true;
+        if(countTundra == 0 && countDesert == 0 && countMildClimate == 0){
+             JOptionPane.showMessageDialog(null,"Ошибка! Введите количество регионов больше нуля хотя бы одного биома", null, JOptionPane.WARNING_MESSAGE);
+             result = false;
+        }
+        return result;
+    }
+      public boolean choiceCheck(TextField count) {
+        int choice = 0;
+        boolean result = true;
+            try {
+                choice = Integer.parseInt(count.getText());
+                if (choice < 0) {
+                         JOptionPane.showMessageDialog(null,"Ошибка! Введено отрицательное число.", null, JOptionPane.WARNING_MESSAGE);
+                         result = false;
+                } 
+                else if (choice>7){
+                    JOptionPane.showMessageDialog(null,"В вашем мире может быть максимум 7 регионов для каждого биома!", null, JOptionPane.WARNING_MESSAGE);
+                    result = false;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,"Ошибка! Введен неверный тип данных", null, JOptionPane.WARNING_MESSAGE);
+                result = false;
+            }
+             return result;
+        }
+       
+    }
     public void createGraph() throws IOException {
         ArrayList<String> vertices = new ArrayList<>();
         for (BaseRegion region : regionManager.getRegions()) {

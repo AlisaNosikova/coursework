@@ -24,7 +24,7 @@ public class WorldMapPanel extends JPanel {
     private CommandManager commandManager = new CommandManager();
     private Player player;
     private Map<BaseRegion, Ellipse2D> regionCircles;
-    private JButton returnToRegion = new JButton();
+    private JButton returnToRegion = new JButton("Отправиться в регион");
 
     public WorldMapPanel(RegionManager regionManager, Player player) {
         this.regionManager = regionManager;
@@ -38,6 +38,8 @@ public class WorldMapPanel extends JPanel {
         });
         setPreferredSize(new Dimension(800, 800));
         returnToRegion.addActionListener(new returnActionListener());
+        returnToRegion.setPreferredSize(new Dimension(200, 50));
+        returnToRegion.setBackground(Color.white);
         add(returnToRegion);
     }
 
