@@ -7,16 +7,20 @@ package commandClasses;
 import classes.InsideObjectType;
 import classes.Inventory;
 import classes.ObjectInterest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author User
  */
 public class MakeFireCommand implements Command {
-    
+
     private ActionResult actionResult = new ActionResult();
-    
+
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.getFireAllowedStatus();
@@ -43,17 +47,22 @@ public class MakeFireCommand implements Command {
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);
-        actionResult.setObjectInerest(obj);
+        actionResult.setObjectInterest(obj);
         return actionResult;
     }
-    
+
     public static String getName() {
         return "Развести костер";
     }
-    
+
     public boolean burnObjectInterest() {
         Random random = new Random();
         double probability = 0.01;
         return (random.nextDouble() <= probability);
+    }
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+         return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\fire.jpg"));
     }
 }

@@ -4,33 +4,35 @@
  */
 package GUI;
 
-import java.awt.Color;
+import classes.CommandManager;
+import classes.Player;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author User
  */
-public class GraphPanel extends JPanel {
-
-    private BufferedImage image;
-    JLabel label = new JLabel("Карта мира");
-
-    public GraphPanel() throws IOException {
-        this.image = ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\graph.png"));
-        setPreferredSize(new Dimension(image.getWidth() / 2, image.getHeight() / 2));
+public class InventoryPanel extends JPanel{
+    BufferedImage image;
+    JTextArea area = new JTextArea();
+      public InventoryPanel(Player player) {
+        try {
+            this.image = player.getInventory().getImage();
+            setPreferredSize(new Dimension(image.getWidth() / 2, image.getHeight() / 2));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    area.setText("У вас осталось бревен: " + player.getInventory().getNumLogs());
+    area.setFont(new Font("Arial", Font.BOLD, 30));
+    add(area);
     }
 
     @Override

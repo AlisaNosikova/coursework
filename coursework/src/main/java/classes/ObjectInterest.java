@@ -62,7 +62,7 @@ public abstract class ObjectInterest {
     public boolean getAliveStatus() {
         return isAlive;
     }
-    
+
     public void setAliveStatus(boolean status) {
         this.isAlive = status;
     }

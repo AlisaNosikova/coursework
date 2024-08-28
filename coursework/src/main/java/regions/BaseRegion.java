@@ -2,16 +2,10 @@ package regions;
 
 import classes.ObjectInterest;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.imageio.ImageIO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -51,7 +45,7 @@ public abstract class BaseRegion {
             }
 
         }
-        
+
     }
 
     public ArrayList<ObjectInterest> getObjectsInterestList() {
@@ -67,7 +61,6 @@ public abstract class BaseRegion {
     public String getUniqueName() {
         return uniqueName;
     }
-    public BufferedImage getImage() throws IOException{
-        return image;
-}
+
+    public abstract BufferedImage getImage()  throws IOException;
 }

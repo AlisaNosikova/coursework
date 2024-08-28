@@ -10,9 +10,6 @@ package classes;
  */
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Supplier;
 import regions.*;
 
 public class RegionManager {
@@ -65,6 +62,7 @@ public class RegionManager {
             regions.add(region);
         }
     }
+
     public ArrayList<BaseRegion> getRegions() {
         return regions;
     }

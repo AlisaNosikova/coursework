@@ -2,6 +2,7 @@ package regions;
 
 import bioms.Tundra;
 import classes.ObjectInterest;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ public class TundraRegion extends BaseRegion {
     private final Tundra tundra;
 
     public TundraRegion() throws IOException {
-        this.image = ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\tundra.jpg"));
         this.tundra = new Tundra() {
         };
         generateObjectsInterestList();
@@ -52,5 +52,10 @@ public class TundraRegion extends BaseRegion {
     @Override
     public void generateUniqueRegion(int index) {
         this.uniqueName = getRegionType() + " region " + index;
+    }
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+         return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\tundra.jpg"));
     }
 }

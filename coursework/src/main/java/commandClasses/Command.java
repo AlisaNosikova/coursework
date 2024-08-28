@@ -5,6 +5,8 @@
 package commandClasses;
 
 import classes.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  *
@@ -17,4 +19,5 @@ public interface Command {
     default boolean checkResources(int numLogs, Inventory inventory) {
         return (inventory.getNumLogs() >= numLogs);
     }
+     BufferedImage getImage() throws IOException;
 }

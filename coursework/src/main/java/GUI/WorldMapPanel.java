@@ -1,21 +1,30 @@
 package GUI;
+
+import classes.CommandManager;
 import classes.Player;
 import classes.RegionManager;
 import regions.BaseRegion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WorldMapPanel extends JPanel {
 
     private final int RADIUS = 30;
     private RegionManager regionManager;
+    private CommandManager commandManager = new CommandManager();
     private Player player;
     private Map<BaseRegion, Ellipse2D> regionCircles;
+    private JButton returnToRegion = new JButton();
 
     public WorldMapPanel(RegionManager regionManager, Player player) {
         this.regionManager = regionManager;
@@ -28,6 +37,8 @@ public class WorldMapPanel extends JPanel {
             }
         });
         setPreferredSize(new Dimension(800, 800));
+        returnToRegion.addActionListener(new returnActionListener());
+        add(returnToRegion);
     }
 
     @Override
@@ -88,6 +99,17 @@ public class WorldMapPanel extends JPanel {
                     JOptionPane.showMessageDialog(this, "Вы можете перемещаться только в соседние регионы.", "Невозможно переместиться", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
+            }
+        }
+    }
+       public class returnActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+            } catch (IOException ex) {
+                Logger.getLogger(WorldMapPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

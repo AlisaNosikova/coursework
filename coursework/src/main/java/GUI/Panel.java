@@ -137,7 +137,7 @@ public class Panel extends JPanel {
         label.setBorder(border);
     }
 
-   public class goButtonListener implements ActionListener {
+    public class goButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -152,7 +152,7 @@ public class Panel extends JPanel {
             player.setCurrentRegion(regionManager.getRegion(0));
             try {
                 // FrameGraph frame = new FrameGraph("Карта мира", regionManager, player);
-                MenuFrame frame = new MenuFrame("Главное меню", regionManager, player);
+                MainGameFrame frame = new MainGameFrame("Главное меню", commandManager,  player, regionManager);
             } catch (IOException ex) {
                 Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -171,7 +171,7 @@ public class Panel extends JPanel {
         vertices.forEach(v -> g.addVertex(v));
         for (int i = 0; i < vertices.size() - 1; i++) {
             String v1 = vertices.get(i);
-            
+
             String v2 = vertices.get(i + 1);
             g.addEdge(v1, v2);
 

@@ -6,18 +6,17 @@ package GUI;
 
 import classes.Player;
 import classes.RegionManager;
-import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
  *
  * @author User
  */
-public class MenuFrame extends JFrame{
-     public MenuFrame(String title, RegionManager regionManager, Player player) throws IOException {
+public class WorldMapFrame extends JFrame {
+
+    public WorldMapFrame(String title, RegionManager regionManager, Player player) {
         super(title);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(new MenuPanel(regionManager, player));
+        add(new WorldMapPanel(regionManager, player));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

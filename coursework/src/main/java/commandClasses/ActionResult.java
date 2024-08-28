@@ -25,7 +25,7 @@ public class ActionResult {
         this.status = status;
     }
 
-    public void setObjectInerest(ObjectInterest obj) {
+    public void setObjectInterest(ObjectInterest obj) {
         this.placeOfAction = obj;
     }
 
@@ -42,6 +42,6 @@ public class ActionResult {
     }
 
     public String getCompleteResult() {
-        return message + " в объекте интереса " + placeOfAction;
+        return message + " в объекте интереса " + placeOfAction.getObjectType();
     }
 }

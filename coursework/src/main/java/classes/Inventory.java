@@ -4,6 +4,11 @@
  */
 package classes;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author User
@@ -27,4 +32,8 @@ public class Inventory {
     public int getNumLogs() {
         return numLogs;
     }
+    public BufferedImage getImage() throws IOException {
+           return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\inventory.jpg"));
+    }
+     
 }

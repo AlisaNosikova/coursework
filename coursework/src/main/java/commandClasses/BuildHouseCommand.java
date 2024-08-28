@@ -7,15 +7,19 @@ package commandClasses;
 import classes.InsideObjectType;
 import classes.Inventory;
 import classes.ObjectInterest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author User
  */
 public class BuildHouseCommand implements Command {
-    
+
     private ActionResult actionResult = new ActionResult();
-    
+
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.getHouseBuildingAllowedStatus();
@@ -34,12 +38,17 @@ public class BuildHouseCommand implements Command {
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);
-        actionResult.setObjectInerest(obj);
+        actionResult.setObjectInterest(obj);
         return actionResult;
     }
-    
+
     public static String getName() {
         return "Построить дом";
     }
-    
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+      return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\house.png"));
+    }
+
 }
