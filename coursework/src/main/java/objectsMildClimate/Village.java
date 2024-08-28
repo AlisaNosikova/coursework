@@ -18,6 +18,7 @@ public class Village extends ObjectInterest {
         this.isFireAllowed = true;
         this.isHouseBuildingAllowed = true;
     }
+
     @Override
     public String getObjectType() {
         return "Деревня";

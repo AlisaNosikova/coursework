@@ -21,7 +21,7 @@ public class Inventory {
     }
 
     public void useInventory(int countLogs) {
-        numLogs = -countLogs;
+        numLogs -= countLogs;
     }
 
     public int getNumLogs() {

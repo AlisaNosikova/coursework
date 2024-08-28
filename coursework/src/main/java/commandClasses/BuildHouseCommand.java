@@ -38,8 +38,7 @@ public class BuildHouseCommand implements Command {
         return actionResult;
     }
     
-    @Override
-    public String getName() {
+    public static String getName() {
         return "Построить дом";
     }
     

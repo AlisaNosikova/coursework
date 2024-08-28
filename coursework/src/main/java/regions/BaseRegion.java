@@ -3,7 +3,11 @@ package regions;
 import classes.ObjectInterest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -35,13 +39,14 @@ public abstract class BaseRegion {
             int randomIndex = random.nextInt(size);
             Class<? extends ObjectInterest> clazz = possibleObjectsInterestList.get(randomIndex);
             try {
-               ObjectInterest obj = clazz.getDeclaredConstructor().newInstance();
+                ObjectInterest obj = clazz.getDeclaredConstructor().newInstance();
                 objectsInterestList.add(clazz.getDeclaredConstructor().newInstance());
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
                 ex.getStackTrace();
             }
 
         }
+        
     }
 
     public ArrayList<ObjectInterest> getObjectsInterestList() {

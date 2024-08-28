@@ -18,6 +18,7 @@ public class ReindeerHerdersCamp extends ObjectInterest {
         this.isFireAllowed = true;
         this.isHouseBuildingAllowed = false;
     }
+
     @Override
     public String getObjectType() {
         return "Стоянка оленеводов";

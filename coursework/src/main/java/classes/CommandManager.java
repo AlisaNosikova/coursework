@@ -14,15 +14,15 @@ import java.util.HashMap;
 public class CommandManager {
 
     private HashMap<String, Command> commandList = new HashMap<>();
-    
-    CommandManager(){
+
+    public CommandManager() {
         completeCommandList();
     }
 
     public void completeCommandList() {
-        commandList.put("Fell Tree", new FellTreeCommand());
-        commandList.put("Build House", new BuildHouseCommand());
-        commandList.put("Make Fire", new MakeFireCommand());
+        commandList.put(FellTreeCommand.getName(), new FellTreeCommand());
+        commandList.put(BuildHouseCommand.getName(), new BuildHouseCommand());
+        commandList.put(MakeFireCommand.getName(), new MakeFireCommand());
     }
 
     public HashMap<String, Command> getCommandList() {

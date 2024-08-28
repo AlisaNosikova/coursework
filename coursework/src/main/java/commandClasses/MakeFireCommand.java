@@ -14,9 +14,9 @@ import java.util.Random;
  * @author User
  */
 public class MakeFireCommand implements Command {
-
+    
     private ActionResult actionResult = new ActionResult();
-
+    
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.getFireAllowedStatus();
@@ -25,6 +25,10 @@ public class MakeFireCommand implements Command {
             obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
             if (burnObjectInterest()) {
                 message = "Вы развели костер и сожгли объект интереса в этом регионе!";
+                obj.setAliveStatus(false);
+                for (InsideObjectType insideObj : obj.getInsideObjects()) {
+                    obj.removeFromInsideObjectsList(insideObj);
+                }
             } else {
                 message = "Вы развели костер!";
             }
@@ -42,12 +46,11 @@ public class MakeFireCommand implements Command {
         actionResult.setObjectInerest(obj);
         return actionResult;
     }
-
-    @Override
-    public String getName() {
+    
+    public static String getName() {
         return "Развести костер";
     }
-
+    
     public boolean burnObjectInterest() {
         Random random = new Random();
         double probability = 0.01;

@@ -18,6 +18,7 @@ public class Geyser extends ObjectInterest {
         this.isFireAllowed = false;
         this.isHouseBuildingAllowed = false;
     }
+
     @Override
     public String getObjectType() {
         return "Гейзер";

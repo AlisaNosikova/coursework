@@ -18,6 +18,7 @@ public class Saline extends ObjectInterest {
         this.isFireAllowed = true;
         this.isHouseBuildingAllowed = false;
     }
+
     @Override
     public String getObjectType() {
         return "Солончак";

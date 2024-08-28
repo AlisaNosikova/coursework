@@ -14,8 +14,6 @@ public interface Command {
 
     ActionResult execute(ObjectInterest objectInterest, Inventory inventory);
 
-    String getName();
-
     default boolean checkResources(int numLogs, Inventory inventory) {
         return (inventory.getNumLogs() >= numLogs);
     }

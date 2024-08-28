@@ -19,6 +19,7 @@ public class PyramidRuins extends ObjectInterest {
         this.isHouseBuildingAllowed = false;
 
     }
+
     @Override
     public String getObjectType() {
         return "Руины пирамид";

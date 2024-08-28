@@ -48,23 +48,22 @@ public class RegionManager {
     }
 
     public void generateRegions(int countTundra, int countDesert, int countMildClimate) {
-        for (int i=0;i<countTundra;i++){
+        for (int i = 0; i < countTundra; i++) {
             BaseRegion region = new TundraRegion();
-            region.generateUniqueRegion(i+1);
+            region.generateUniqueRegion(i + 1);
             regions.add(region);
         }
-        for (int i=0;i<countDesert;i++){
+        for (int i = 0; i < countDesert; i++) {
             BaseRegion region = new DesertRegion();
-            region.generateUniqueRegion(i+1);
+            region.generateUniqueRegion(i + 1);
             regions.add(region);
         }
-        for (int i=0;i<countMildClimate;i++){
+        for (int i = 0; i < countMildClimate; i++) {
             BaseRegion region = new MildClimateRegion();
-            region.generateUniqueRegion(i+1);
+            region.generateUniqueRegion(i + 1);
             regions.add(region);
         }
     }
-
     public ArrayList<BaseRegion> getRegions() {
         return regions;
     }

@@ -26,18 +26,28 @@ public class World {
 
     public void start() {
         boolean doActions = true;
-        System.out.println("Введите количество регионов для генерации мира");
-        System.out.println("Ввведите количество регионов Тундра: ");
-        int countTundra = ChoiceCheck();
-        System.out.println("Ввведите количество регионов Пустыня: ");
-        int countDesert = ChoiceCheck();
-        System.out.println("Ввведите количество регионов Смешанный лес: ");
-        int countMildClimate = ChoiceCheck();
+        boolean doChoices = true;
+        int countTundra = 0;
+        int countDesert = 0;
+        int countMildClimate = 0;
+        while (doChoices) {
+            System.out.println("Введите количество регионов для генерации мира");
+            System.out.println("Ввведите количество регионов Тундра: ");
+            countTundra = choiceCheck(scanner);
+            System.out.println("Ввведите количество регионов Пустыня: ");
+            countDesert = choiceCheck(scanner);
+            System.out.println("Ввведите количество регионов Смешанный лес: ");
+            countMildClimate = choiceCheck(scanner);
+            if (countTundra != 0 || countDesert != 0 || countMildClimate != 0) {
+                doChoices = false;
+            }
+        }
+        if (!doChoices){
         regionManager.generateRegions(countTundra, countDesert, countMildClimate);
         player.setCurrentRegion(regionManager.getRegion(0));
         while (doActions) {
             System.out.println("----------------");
-            System.out.print("Ваш текущий регион : " + player.getCurrentRegion().getUniqueName());
+            System.out.println("Ваш текущий регион : " + player.getCurrentRegion().getUniqueName());
             System.out.println("Доступные команды для взаимодействия с ОИ: " + commandManager.getCommandList().keySet());
             System.out.println("Если вы хотите переместится в другой регион, введите: move");
             System.out.println("Если вы хотите посмотреть содержимое инвентаря, введите: checkInventory");
@@ -46,25 +56,23 @@ public class World {
             String actionName = scanner.nextLine();
             if ("move".equals(actionName)) {
                 moveToRegion();
-            }
-            else if ("checkInventory".equals(actionName)) {
+            } else if ("checkInventory".equals(actionName)) {
                 System.out.println("Количество бревен сейчас: " + player.getInventory().getNumLogs());
-            }
-            else if("exit".equals(actionName)){
+            } else if ("exit".equals(actionName)) {
                 System.out.println("Спасибо за игру!");
                 doActions = false;
+            } else {
+                System.out.println("Список ОИ в текущем регионе: ");
+                for (ObjectInterest object : player.getCurrentRegion().getObjectsInterestList()) {
+                    System.out.println(object.getObjectType());
+                }
+                System.out.println("Введите номер объекта интереса из предложенных: ");
+                int objectIndex = scanner.nextInt();
+                scanner.nextLine();  // Поглощаем символ новой строки после ввода числа
+                System.out.println(player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(objectIndex - 1), commandManager.getCommandList().get(actionName)).getCompleteResult());
             }
-            else{  
-            System.out.println("Список ОИ в текущем регионе: ");
-            for (ObjectInterest object : player.getCurrentRegion().getObjectsInterestList()) {
-                System.out.println(object.getObjectType());
-            }
-            scanner.nextLine();
-            System.out.println("Введите номер объекта интереса из предложенных: ");
-            int objectIndex = scanner.nextInt();
-            System.out.println(player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(objectIndex-1), commandManager.getCommandList().get(actionName)).getCompleteResult());
         }
-        }
+    }
     }
 
     public void moveToRegion() {
@@ -72,34 +80,35 @@ public class World {
         System.out.println("Доступные регионы для перемещения: ");
         for (BaseRegion region : availableRegions) {
             System.out.print(regionManager.getRegionPosition(region));
-            System.out.println("" + region.getUniqueName());
+            System.out.println(" " + region.getUniqueName());
         }
         System.out.println("Всего регионов для выбора:" + availableRegions.size());
         System.out.println("Выберите номер региона, куда хотите переместится: ");
         int regionIndex = scanner.nextInt();
-        player.setCurrentRegion(availableRegions.get(regionIndex-1));
+        scanner.nextLine();  // Поглощаем символ новой строки после ввода числа
+        player.setCurrentRegion(availableRegions.get(regionIndex - 1));
         System.out.println(player.getCurrentRegion());
     }
-    public static int ChoiceCheck(){
-           int choice=0;
-           boolean ch=true;
-           while (ch){
-               try{
-                   Scanner in = new Scanner(System.in);
-                   choice = in.nextInt();
-                   if(choice<0){
-                    try{
-                     throw new Exception();
-                    }catch(Exception e){
-                  System.out.println("Error! Negative number");  }
-                   }
-                   else{ch =false;}
-                   
-                }catch(InputMismatchException e){
-                 System.out.println("Error! Wrong type");   
-               } 
-       }
-           return choice;
-}
+
+    public static int choiceCheck(Scanner scanner) {
+        int choice = 0;
+        boolean ch = true;
+        ArrayList<Integer> choicesList = new ArrayList<>();
+        while (ch) {
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();  // Поглощаем символ новой строки после ввода числа
+                if (choice < 0) {
+                    System.out.println("Ошибка! Введено отрицательное число.");
+                } else {
+                    ch = false;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ошибка! Введен неверный тип данных.");
+                scanner.nextLine(); // Очищаем некорректный ввод
+            }
+        }
+        return choice;
+    }
 
 }

@@ -17,14 +17,12 @@ public class Gorge extends ObjectInterest {
         super(STREAM, BOULDER, CACTUS);
         this.isFireAllowed = true;
         this.isHouseBuildingAllowed = false;
- 
+
     }
 
     @Override
     public String getObjectType() {
         return "Ущелье";
     }
-
-   
 
 }

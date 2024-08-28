@@ -22,6 +22,7 @@ public class FellTreeCommand implements Command {
         if (approveStatus) {
             message = "Вы срубили дерево!";
             obj.removeFromInsideObjectsList(InsideObjectType.TREE);
+            obj.addToInsideObjectsList(InsideObjectType.STUMP);
             inventory.addToInventory(1);
             actionResult.setStatus(true);
         } else {
@@ -33,8 +34,7 @@ public class FellTreeCommand implements Command {
         return actionResult;
     }
     
-    @Override
-    public String getName() {
+    public static String getName() {
         return "Срубить дерево";
     }
 }
