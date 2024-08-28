@@ -8,6 +8,7 @@ package classes;
  *
  * @author User
  */
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +48,7 @@ public class RegionManager {
         return getRegion((currentPosition - 1 + regions.size()) % regions.size());
     }
 
-    public void generateRegions(int countTundra, int countDesert, int countMildClimate) {
+    public void generateRegions(int countTundra, int countDesert, int countMildClimate) throws IOException {
         for (int i = 0; i < countTundra; i++) {
             BaseRegion region = new TundraRegion();
             region.generateUniqueRegion(i + 1);

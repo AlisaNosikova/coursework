@@ -5,14 +5,7 @@ import classes.Player;
 import classes.RegionManager;
 import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.layout.mxIGraphLayout;
-import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.swing.handler.mxCellMarker;
 import com.mxgraph.util.mxCellRenderer;
-import com.mxgraph.util.mxEventSource;
-import com.mxgraph.util.mxImageBundle;
-import com.mxgraph.util.mxResources;
-import static com.mxgraph.util.mxUtils.loadImage;
-import com.mxgraph.view.mxEdgeStyle;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +13,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -147,18 +137,22 @@ public class Panel extends JPanel {
         label.setBorder(border);
     }
 
-    public class goButtonListener implements ActionListener {
+   public class goButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             removeAll();
             revalidate();
             repaint();
-            regionManager.generateRegions(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()));
+            try {
+                regionManager.generateRegions(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()));
+            } catch (IOException ex) {
+                Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             player.setCurrentRegion(regionManager.getRegion(0));
             try {
-                createGraph();
-                FrameGraph frame = new FrameGraph("Карта мира");
+                // FrameGraph frame = new FrameGraph("Карта мира", regionManager, player);
+                MenuFrame frame = new MenuFrame("Главное меню", regionManager, player);
             } catch (IOException ex) {
                 Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -177,7 +171,7 @@ public class Panel extends JPanel {
         vertices.forEach(v -> g.addVertex(v));
         for (int i = 0; i < vertices.size() - 1; i++) {
             String v1 = vertices.get(i);
-
+            
             String v2 = vertices.get(i + 1);
             g.addEdge(v1, v2);
 

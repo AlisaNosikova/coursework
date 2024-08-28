@@ -2,7 +2,10 @@ package regions;
 
 import bioms.Tundra;
 import classes.ObjectInterest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,7 +19,8 @@ public class TundraRegion extends BaseRegion {
 
     private final Tundra tundra;
 
-    public TundraRegion() {
+    public TundraRegion() throws IOException {
+        this.image = ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\tundra.jpg"));
         this.tundra = new Tundra() {
         };
         generateObjectsInterestList();

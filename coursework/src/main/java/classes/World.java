@@ -4,6 +4,7 @@
  */
 package classes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class World {
         scanner = new Scanner(System.in);
     }
 
-    public void start() {
+    public void start() throws IOException {
         boolean doActions = true;
         boolean doChoices = true;
         int countTundra = 0;
