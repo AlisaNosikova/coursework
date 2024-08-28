@@ -61,18 +61,20 @@ public class MainGamePanel extends JPanel {
     Player player;
     JList<String> list = new JList();
     JTextArea area = new JTextArea();
+    
     JLabel label;
     JButton chooseAction = new JButton("Выберите действие");
     JScrollPane scrollPane = new JScrollPane();
     boolean showChoiceButton = false;
-    JButton showTree = new JButton("Покажите дерево объектов интереса");
+    JButton showTree = new JButton("Показать дерево ОИ");
+    JButton showGraph;
     
 
     public MainGamePanel(CommandManager manager, Player player, RegionManager regionManager) throws IOException {
         this.player = player;
         this.manager = manager;
         this.regionManager = regionManager;
-        
+        area.setEditable(false);
         makeList();
         try {
             image = player.getCurrentRegion().getImage();

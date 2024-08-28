@@ -46,7 +46,6 @@ public class Panel extends JPanel {
     TextField countDesert;
     TextField countMildClimate;
     JButton goButton;
-    JButton showGraph;
     RegionManager regionManager = new RegionManager();
     CommandManager commandManager = new CommandManager();
     Player player = new Player();
