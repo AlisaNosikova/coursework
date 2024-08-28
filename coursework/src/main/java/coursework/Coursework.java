@@ -4,7 +4,6 @@
 package coursework;
 
 import GUI.Frame;
-import classes.World;
 import java.io.IOException;
 
 /**
@@ -14,8 +13,6 @@ import java.io.IOException;
 public class Coursework {
 
     public static void main(String[] args) throws IOException {
-      //  World world = new World();
-      // world.start();
         Frame frame = new Frame("Игра");
     }
 }

@@ -19,5 +19,6 @@ public interface Command {
     default boolean checkResources(int numLogs, Inventory inventory) {
         return (inventory.getNumLogs() >= numLogs);
     }
-     BufferedImage getImage() throws IOException;
+
+    BufferedImage getImage() throws IOException;
 }

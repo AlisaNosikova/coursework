@@ -34,6 +34,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -61,19 +62,20 @@ public class MainGamePanel extends JPanel {
     Player player;
     JList<String> list = new JList();
     JTextArea area = new JTextArea();
-    
+
     JLabel label;
     JButton chooseAction = new JButton("Выберите действие");
     JScrollPane scrollPane = new JScrollPane();
     boolean showChoiceButton = false;
     JButton showTree = new JButton("Показать дерево ОИ");
     JButton showGraph;
-    
+    JFrame currentFrame;
 
-    public MainGamePanel(CommandManager manager, Player player, RegionManager regionManager) throws IOException {
+    public MainGamePanel(CommandManager manager, Player player, RegionManager regionManager, JFrame frame) throws IOException {
         this.player = player;
         this.manager = manager;
         this.regionManager = regionManager;
+        this.currentFrame = frame;
         area.setEditable(false);
         makeList();
         try {
@@ -83,7 +85,7 @@ public class MainGamePanel extends JPanel {
             ex.printStackTrace();
         }
         addButtons();
-        
+
         showTree.addActionListener(new showTreeListener());
     }
 
@@ -96,24 +98,24 @@ public class MainGamePanel extends JPanel {
     }
 
     protected void makeList() {
-        DefaultListModel<String> dlm = new DefaultListModel<String>();
+        DefaultListModel<String> dlm = new DefaultListModel<>();
         for (ObjectInterest obj : player.getCurrentRegion().getObjectsInterestList()) {
-            dlm.add(0, obj.getObjectType());
+            dlm.addElement(obj.getObjectType());
         }
-        list = new JList<String>(dlm);
+        list.setModel(dlm);
         list.setSelectionBackground(Color.getHSBColor(63, 224, 208));
         scrollPane.setViewportView(list);
         scrollPane.createVerticalScrollBar();
         scrollPane.setSize(200, 200);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        area.setPreferredSize(new Dimension(100,50));
-        System.out.println(list.getSelectedValue());
-       
+        area.setPreferredSize(new Dimension(100, 50));
+
         list.addListSelectionListener(new listSelectionListener());
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 area.setText(list.getSelectedValue());
+                System.out.println(list.getSelectedIndex());
             }
         });
     }
@@ -126,6 +128,7 @@ public class MainGamePanel extends JPanel {
         }
 
     }
+
     private void addButtons() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 20, 20, 20);
@@ -139,7 +142,7 @@ public class MainGamePanel extends JPanel {
         JLabel headerLabel = new JLabel("Список доступных ОИ: ");
         headerLabel.setFont(new Font("Arial", Font.BOLD, 15));
         label.setForeground(Color.white);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 3;
 
@@ -148,7 +151,6 @@ public class MainGamePanel extends JPanel {
         map.addActionListener(new mapListener());
         add(map, gbc);
 
-        // Добавляем инвентарь
         gbc.gridx = 0;
         gbc.gridy = 4;
         inventory.setBackground(Color.WHITE);
@@ -160,7 +162,6 @@ public class MainGamePanel extends JPanel {
         showTree.setPreferredSize(new Dimension(100, 50));
         add(showTree);
 
-        // Добавляем скролл-панель
         gbc.gridx = 1;
         gbc.gridy = 2;
         scrollPane.setPreferredSize(new Dimension(200, 300));
@@ -177,44 +178,51 @@ public class MainGamePanel extends JPanel {
         chooseAction.addActionListener(new chooseActionListener());
 
     }
-      public class chooseActionListener implements ActionListener {
+
+    public class chooseActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        String actionName = "";
-        ArrayList<JRadioButton> buttons = new ArrayList<>();
-        JRadioButton houseB = new JRadioButton("Построить дом");
-        JRadioButton treeB = new JRadioButton("Срубить дерево");
-        JRadioButton fireB = new JRadioButton("Развести костер");
-        buttons.add(houseB);
-        buttons.add(treeB);
-        buttons.add(fireB);
-        JPanel panel = new JPanel();
-        panel.add(houseB);
-        panel.add(treeB);
-        panel.add(fireB);    
-        panel.setBackground(Color.ORANGE);
-        JTextArea area= new JTextArea();
-        panel.add(new JTextArea());
-         JOptionPane.showMessageDialog(null, panel, null, JOptionPane.PLAIN_MESSAGE);
-        for (JRadioButton button: buttons){
-            if (button.isSelected()){
-                System.out.println(button.getText());
-                actionName = button.getText();
+            String actionName = "";
+            ArrayList<JRadioButton> buttons = new ArrayList<>();
+            JRadioButton houseB = new JRadioButton("Построить дом");
+            JRadioButton treeB = new JRadioButton("Срубить дерево");
+            JRadioButton fireB = new JRadioButton("Развести костер");
+            buttons.add(houseB);
+            buttons.add(treeB);
+            buttons.add(fireB);
+            JPanel panel = new JPanel();
+            panel.add(houseB);
+            panel.add(treeB);
+            panel.add(fireB);
+            panel.setBackground(Color.ORANGE);
+            JTextArea area = new JTextArea();
+            panel.add(new JTextArea());
+            JOptionPane.showMessageDialog(null, panel, null, JOptionPane.PLAIN_MESSAGE);
+            for (JRadioButton button : buttons) {
+                if (button.isSelected()) {
+                    actionName = button.getText();
+                }
+            }
+            try {
+                ResultPanel panelResult = new ResultPanel(player, actionName, list.getSelectedIndex(), manager);
+                JOptionPane.showMessageDialog(null, panelResult, null, JOptionPane.PLAIN_MESSAGE);
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Действие не выбрано!", null, JOptionPane.PLAIN_MESSAGE);
             }
         }
-         ResultPanel panelResult = new ResultPanel(player, actionName, list.getSelectedIndex(), manager);
-          JOptionPane.showMessageDialog(null, panelResult, null, JOptionPane.PLAIN_MESSAGE);
-        }
     }
-      public class mapListener implements ActionListener {
+
+    public class mapListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-          WorldMapFrame frame = new WorldMapFrame("Карта мира", regionManager, player);
+            currentFrame.dispose();
+            WorldMapFrame frame = new WorldMapFrame("Карта мира", regionManager, player);
         }
     }
-       public class showTreeListener implements ActionListener {
+
+    public class showTreeListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -224,16 +232,17 @@ public class MainGamePanel extends JPanel {
             JTree tree = new JTree(model);
             tree.setBackground(Color.WHITE);
             panel.add(tree);
-             JScrollPane scrollPane = new JScrollPane(tree, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-             JOptionPane.showMessageDialog(null, scrollPane, null, JOptionPane.INFORMATION_MESSAGE);
+            JScrollPane scrollPane = new JScrollPane(tree, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            JOptionPane.showMessageDialog(null, scrollPane, null, JOptionPane.INFORMATION_MESSAGE);
         }
     }
-           public class inventoryListener implements ActionListener {
+
+    public class inventoryListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             InventoryPanel panelInventory = new InventoryPanel(player);
-           JOptionPane.showMessageDialog(null, panelInventory, null, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, panelInventory, null, JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

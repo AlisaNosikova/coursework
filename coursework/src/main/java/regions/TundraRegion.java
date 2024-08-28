@@ -56,6 +56,6 @@ public class TundraRegion extends BaseRegion {
 
     @Override
     public BufferedImage getImage() throws IOException {
-         return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\tundra.jpg"));
+        return ImageIO.read(new File("src\\main\\resources\\tundra.jpg"));
     }
 }

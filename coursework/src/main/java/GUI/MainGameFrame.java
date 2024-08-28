@@ -23,8 +23,7 @@ public class MainGameFrame extends JFrame {
         setSize(800, 400);
         Container con = this.getContentPane();
         con.setLayout(new BorderLayout());
-        con.add(new MainGamePanel(commandManager, player, regionManager), BorderLayout.CENTER);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        con.add(new MainGamePanel(commandManager, player, regionManager, this), BorderLayout.CENTER);
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

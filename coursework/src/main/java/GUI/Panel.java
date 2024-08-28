@@ -49,11 +49,12 @@ public class Panel extends JPanel {
     RegionManager regionManager = new RegionManager();
     CommandManager commandManager = new CommandManager();
     Player player = new Player();
+    JFrame currentFrame;
 
-    public Panel() throws IOException {
-
+    public Panel(JFrame frame) throws IOException {
+        this.currentFrame = frame;
         try {
-            image = ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\background.png"));
+            image = ImageIO.read(new File("src\\main\\resources\\background.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -143,92 +144,56 @@ public class Panel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (choiceCheck(countTundra) && choiceCheck(countDesert) && choiceCheck(countMildClimate)){
-              if (checkChoice(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()))){ 
-               
-            removeAll();
-            revalidate();
-            repaint();
-            try {
-               
-                regionManager.generateRegions(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()));
-            } catch (IOException ex) {
-                Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            player.setCurrentRegion(regionManager.getRegion(0));
-            try {
-                // FrameGraph frame = new FrameGraph("Карта мира", regionManager, player);
-                MainGameFrame frame = new MainGameFrame("Главное меню", commandManager,  player, regionManager);
-            } catch (IOException ex) {
-                Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+            if (choiceCheck(countTundra) && choiceCheck(countDesert) && choiceCheck(countMildClimate)) {
+                if (checkChoice(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()))) {
+
+                    removeAll();
+                    revalidate();
+                    repaint();
+                    try {
+
+                        regionManager.generateRegions(Integer.parseInt(countTundra.getText()), Integer.parseInt(countDesert.getText()), Integer.parseInt(countMildClimate.getText()));
+                    } catch (IOException ex) {
+                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    player.setCurrentRegion(regionManager.getRegion(0));
+                    try {
+                        MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+                        currentFrame.dispose();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
-              }
-    }
-    public boolean checkChoice(int countTundra, int countDesert, int countMildClimate){
-        boolean result = true;
-        if(countTundra == 0 && countDesert == 0 && countMildClimate == 0){
-             JOptionPane.showMessageDialog(null,"Ошибка! Введите количество регионов больше нуля хотя бы одного биома", null, JOptionPane.WARNING_MESSAGE);
-             result = false;
+
+        public boolean checkChoice(int countTundra, int countDesert, int countMildClimate) {
+            boolean result = true;
+            if (countTundra == 0 && countDesert == 0 && countMildClimate == 0) {
+                JOptionPane.showMessageDialog(null, "Ошибка! Введите количество регионов больше нуля хотя бы одного биома", null, JOptionPane.WARNING_MESSAGE);
+                result = false;
+            }
+            return result;
         }
-        return result;
-    }
-      public boolean choiceCheck(TextField count) {
-        int choice = 0;
-        boolean result = true;
+
+        public boolean choiceCheck(TextField count) {
+            int choice = 0;
+            boolean result = true;
             try {
                 choice = Integer.parseInt(count.getText());
                 if (choice < 0) {
-                         JOptionPane.showMessageDialog(null,"Ошибка! Введено отрицательное число.", null, JOptionPane.WARNING_MESSAGE);
-                         result = false;
-                } 
-                else if (choice>7){
-                    JOptionPane.showMessageDialog(null,"В вашем мире может быть максимум 7 регионов для каждого биома!", null, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Ошибка! Введено отрицательное число.", null, JOptionPane.WARNING_MESSAGE);
+                    result = false;
+                } else if (choice > 7) {
+                    JOptionPane.showMessageDialog(null, "В вашем мире может быть максимум 7 регионов для каждого биома!", null, JOptionPane.WARNING_MESSAGE);
                     result = false;
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null,"Ошибка! Введен неверный тип данных", null, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ошибка! Введен неверный тип данных", null, JOptionPane.WARNING_MESSAGE);
                 result = false;
             }
-             return result;
+            return result;
         }
-       
-    }
-    public void createGraph() throws IOException {
-        ArrayList<String> vertices = new ArrayList<>();
-        for (BaseRegion region : regionManager.getRegions()) {
-            vertices.add(region.getUniqueName());
-        }
-        System.out.println(vertices);
-        File imgFile = new File("src/main/resources");
-        imgFile.createNewFile();
-        DefaultDirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
-        vertices.forEach(v -> g.addVertex(v));
-        for (int i = 0; i < vertices.size() - 1; i++) {
-            String v1 = vertices.get(i);
-
-            String v2 = vertices.get(i + 1);
-            g.addEdge(v1, v2);
-
-        }
-        g.addEdge(vertices.get(0), vertices.get(vertices.size() - 1));
-
-        givenAdaptedGraph_whenWriteBufferedImage_thenFileShouldExist(g);
-
-    }
-
-    void givenAdaptedGraph_whenWriteBufferedImage_thenFileShouldExist(Graph g) throws IOException {
-
-        JGraphXAdapter<String, DefaultEdge> graphAdapter
-                = new JGraphXAdapter<String, DefaultEdge>(g);
-        mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
-        layout.execute(graphAdapter.getDefaultParent());
-        graphAdapter.removeCells();
-
-        BufferedImage image
-                = mxCellRenderer.createBufferedImage(graphAdapter, null, 4, Color.WHITE, true, null);
-        File imgFile = new File("src/main/resources/graph.png");
-        ImageIO.write(image, "PNG", imgFile);
 
     }
 

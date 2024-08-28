@@ -44,7 +44,7 @@ public class FellTreeCommand implements Command {
 
     @Override
     public BufferedImage getImage() throws IOException {
-           return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\fellTree.png"));
+        return ImageIO.read(new File("src\\main\\resources\\fellTree.png"));
     }
-    
+
 }

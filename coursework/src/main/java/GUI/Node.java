@@ -11,24 +11,26 @@ import java.util.ArrayList;
  *
  * @author User
  */
-  class Node {
-        private String name;
-        private ArrayList<Node> children;
+class Node {
 
-        public Node(String name) {
-            this.name = name;
-            this.children = new ArrayList<>();
-        }
+    private String name;
+    private ArrayList<Node> children;
 
-        public void addChild(Node child) {
-            children.add(child);
-        }
+    public Node(String name) {
+        this.name = name;
+        this.children = new ArrayList<>();
+    }
 
-        public ArrayList<Node> getChildren() {
-            return children;
-        }
+    public void addChild(Node child) {
+        children.add(child);
+    }
+
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
     public String toString() {
         return name;
     }
-     
-    }
+
+}

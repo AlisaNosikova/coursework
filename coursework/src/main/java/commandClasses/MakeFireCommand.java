@@ -10,6 +10,7 @@ import classes.ObjectInterest;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
@@ -30,9 +31,10 @@ public class MakeFireCommand implements Command {
             if (burnObjectInterest()) {
                 message = "Вы развели костер и сожгли объект интереса в этом регионе!";
                 obj.setAliveStatus(false);
-                for (InsideObjectType insideObj : obj.getInsideObjects()) {
-                    obj.removeFromInsideObjectsList(insideObj);
-                }
+                for (InsideObjectType insideObj : new ArrayList<>(obj.getInsideObjects())) {
+                                  obj.removeFromInsideObjectsList(insideObj);
+   }
+
             } else {
                 message = "Вы развели костер!";
             }
@@ -57,12 +59,12 @@ public class MakeFireCommand implements Command {
 
     public boolean burnObjectInterest() {
         Random random = new Random();
-        double probability = 0.01;
+        double probability = 1;
         return (random.nextDouble() <= probability);
     }
 
     @Override
     public BufferedImage getImage() throws IOException {
-         return ImageIO.read(new File("C:\\Users\\User\\Documents\\GitHub\\coursework\\coursework\\src\\main\\resources\\fire.jpg"));
+        return ImageIO.read(new File("src\\main\\resources\\fire.jpg"));
     }
 }

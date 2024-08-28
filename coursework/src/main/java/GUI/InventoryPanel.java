@@ -20,21 +20,23 @@ import javax.swing.JTextArea;
  *
  * @author User
  */
-public class InventoryPanel extends JPanel{
+public class InventoryPanel extends JPanel {
+
     BufferedImage image;
     JTextArea area = new JTextArea();
-      public InventoryPanel(Player player) {
+
+    public InventoryPanel(Player player) {
         try {
             this.image = player.getInventory().getImage();
             setPreferredSize(new Dimension(image.getWidth() / 2, image.getHeight() / 2));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    area.setText("У вас осталось бревен: " + player.getInventory().getNumLogs());
-    area.setFont(new Font("Arial", Font.BOLD, 30));
-    add(area);
+        area.setText("У вас осталось бревен: " + player.getInventory().getNumLogs());
+        area.setFont(new Font("Arial", Font.BOLD, 30));
+        add(area);
     }
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

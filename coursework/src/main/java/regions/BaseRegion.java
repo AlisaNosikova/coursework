@@ -62,5 +62,5 @@ public abstract class BaseRegion {
         return uniqueName;
     }
 
-    public abstract BufferedImage getImage()  throws IOException;
+    public abstract BufferedImage getImage() throws IOException;
 }

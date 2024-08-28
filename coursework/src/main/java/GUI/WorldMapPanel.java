@@ -7,8 +7,6 @@ import regions.BaseRegion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
@@ -24,23 +22,24 @@ public class WorldMapPanel extends JPanel {
     private CommandManager commandManager = new CommandManager();
     private Player player;
     private Map<BaseRegion, Ellipse2D> regionCircles;
-    private JButton returnToRegion = new JButton("Отправиться в регион");
+    private JFrame currentFrame;
 
-    public WorldMapPanel(RegionManager regionManager, Player player) {
+    public WorldMapPanel(RegionManager regionManager, Player player, JFrame frame) {
         this.regionManager = regionManager;
         this.player = player;
         this.regionCircles = new HashMap<>();
+        this.currentFrame = frame;
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                handleMouseClick(e);
+                try {
+                    handleMouseClick(e);
+                } catch (IOException ex) {
+                    Logger.getLogger(WorldMapPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         setPreferredSize(new Dimension(800, 800));
-        returnToRegion.addActionListener(new returnActionListener());
-        returnToRegion.setPreferredSize(new Dimension(200, 50));
-        returnToRegion.setBackground(Color.white);
-        add(returnToRegion);
     }
 
     @Override
@@ -88,7 +87,7 @@ public class WorldMapPanel extends JPanel {
         }
     }
 
-    private void handleMouseClick(MouseEvent e) {
+    private void handleMouseClick(MouseEvent e) throws IOException {
         ArrayList<BaseRegion> availableRegions = regionManager.checkAvailableRegions(player.getCurrentRegion());
 
         for (Map.Entry<BaseRegion, Ellipse2D> entry : regionCircles.entrySet()) {
@@ -97,6 +96,8 @@ public class WorldMapPanel extends JPanel {
                 if (availableRegions.contains(selectedRegion)) {
                     player.setCurrentRegion(selectedRegion);
                     repaint();
+                    MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+                    currentFrame.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Вы можете перемещаться только в соседние регионы.", "Невозможно переместиться", JOptionPane.WARNING_MESSAGE);
                 }
@@ -104,15 +105,5 @@ public class WorldMapPanel extends JPanel {
             }
         }
     }
-       public class returnActionListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
-            } catch (IOException ex) {
-                Logger.getLogger(WorldMapPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
 }

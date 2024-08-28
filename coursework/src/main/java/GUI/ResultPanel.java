@@ -21,18 +21,20 @@ import javax.swing.JTextArea;
  * @author User
  */
 public class ResultPanel extends JPanel {
+
     BufferedImage image;
     JTextArea area = new JTextArea();
-      public ResultPanel(Player player, String actionName, int index, CommandManager manager) {
+
+    public ResultPanel(Player player, String actionName, int index, CommandManager manager) {
         try {
             this.image = manager.getCommandList().get(actionName).getImage();
             setPreferredSize(new Dimension(image.getWidth() / 2, image.getHeight() / 2));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    String result = player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(index), manager.getCommandList().get(actionName)).getCompleteResult();
-    area.setText(result);
-    add(area);
+        String result = player.makeAction(player.getCurrentRegion().getObjectsInterestList().get(index), manager.getCommandList().get(actionName)).getCompleteResult();
+        area.setText(result);
+        add(area);
     }
 
     @Override

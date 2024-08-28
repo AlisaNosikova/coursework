@@ -18,8 +18,7 @@ public class Frame extends JFrame {
     public Frame(String title) throws IOException {
         super(title);
         setSize(700, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Panel panel = new Panel();
+        Panel panel = new Panel(this);
         Container con = this.getContentPane();
         con.setLayout(new BorderLayout());
         con.add(panel, BorderLayout.CENTER);

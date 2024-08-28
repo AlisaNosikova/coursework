@@ -16,7 +16,7 @@ public class WorldMapFrame extends JFrame {
 
     public WorldMapFrame(String title, RegionManager regionManager, Player player) {
         super(title);
-        add(new WorldMapPanel(regionManager, player));
+        add(new WorldMapPanel(regionManager, player, this));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

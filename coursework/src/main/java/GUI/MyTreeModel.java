@@ -16,35 +16,37 @@ import javax.swing.tree.TreePath;
  * @author User
  */
 public class MyTreeModel implements TreeModel {
+
     private Node root;
     private Node objectsNode;
 
- public MyTreeModel() {
-    root = new Node("Корневая запись");      
-    objectsNode = new Node("Объекты интереса");
-    root.addChild(objectsNode);
-    
-       
-}
-    public void addObjectsList(ArrayList<ObjectInterest> list){
-        addNode(list);
-    }
-     public void addNode(ArrayList<ObjectInterest> list){
-      for (ObjectInterest obj: list){
-        Node node = new Node(obj.getObjectType());
-        objectsNode.addChild(node);
-        for (InsideObjectType type: obj.getInsideObjects()){
-            node.addChild(new Node(type.toString()));
-        }
+    public MyTreeModel() {
+        root = new Node("Корневая запись");
+        objectsNode = new Node("Объекты интереса");
+        root.addChild(objectsNode);
+
     }
 
- }
-    
+    public void addObjectsList(ArrayList<ObjectInterest> list) {
+        addNode(list);
+    }
+
+    public void addNode(ArrayList<ObjectInterest> list) {
+        for (ObjectInterest obj : list) {
+            Node node = new Node(obj.getObjectType());
+            objectsNode.addChild(node);
+            for (InsideObjectType type : obj.getInsideObjects()) {
+                node.addChild(new Node(type.toString()));
+            }
+        }
+
+    }
+
     @Override
     public Object getRoot() {
         return root;
     }
-  
+
     @Override
     public int getChildCount(Object parent) {
         Node node = (Node) parent;
