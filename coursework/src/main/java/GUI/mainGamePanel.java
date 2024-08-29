@@ -159,7 +159,7 @@ public class MainGamePanel extends JPanel {
         add(inventory, gbc);
         gbc.gridx = 0;
         gbc.gridy = 5;
-        showTree.setPreferredSize(new Dimension(100, 50));
+        showTree.setPreferredSize(new Dimension(150, 50));
         add(showTree);
 
         gbc.gridx = 1;
@@ -172,7 +172,7 @@ public class MainGamePanel extends JPanel {
         add(area);
         gbc.gridx++;
         chooseAction.setBackground(Color.WHITE);
-        chooseAction.setPreferredSize(new Dimension(100, 50));
+        chooseAction.setPreferredSize(new Dimension(150, 50));
         add(chooseAction);
         chooseAction.setVisible(showChoiceButton);
         chooseAction.addActionListener(new chooseActionListener());
