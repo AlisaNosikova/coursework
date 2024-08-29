@@ -48,6 +48,7 @@
                             <mainClass>coursework.Coursework</mainClass>
                         </manifest>
                     </archive>
+                  
                 </configuration>
                 <executions>
                     <execution>
